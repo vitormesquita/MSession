@@ -42,6 +42,10 @@ public class SessionManager<T: MUser>: NSObject {
         
         super.init()
     }
+
+    public convenience override init() {
+        self.init(sessionDataStore: SessionDataStore())
+    }
     
     private func deleteSession() {
         sessionDataStore.deleteSession()
