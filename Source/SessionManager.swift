@@ -43,10 +43,18 @@ open class SessionManager<T: MUser>: NSObject {
         super.init()
     }
 
-    public convenience override init() {
-        self.init(sessionDataStore: SessionDataStore())
+    public override init() {
+        self.sessionDataStore = SessionDataStore()
+
+        if let session = sessionDataStore.getSession() {
+            self.state = .runnig(session)
+        } else {
+            self.state = .none
+        }
+
+        super.init()
     }
-    
+
     private func deleteSession() {
         sessionDataStore.deleteSession()
         cachedSession = nil
