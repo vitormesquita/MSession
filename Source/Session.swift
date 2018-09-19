@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class Session: NSObject, NSCoding {
+open class Session: NSObject, NSCoding {
     
     private(set) var accessToken: String
     private(set) var user: MUser

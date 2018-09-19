@@ -32,6 +32,5 @@ public protocol SessionDataStoreProtocol {
 }
 
 public protocol SessionManagerDelegate: class {
-    
     func sessionStateDidChange(_ state: SessionState)
 }

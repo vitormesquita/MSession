@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class SessionManager<T: MUser>: NSObject {
+open class SessionManager<T: MUser>: NSObject {
     
     // MARK: private
     private let sessionDataStore: SessionDataStoreProtocol
