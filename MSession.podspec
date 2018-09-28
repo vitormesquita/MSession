@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'MSession'
-  s.version          = '0.1.5'
+  s.version          = '0.1.6'
   s.summary          = 'A simple way to manager session in your application'
   s.homepage         = 'https://github.com/vitormesquita/MSession'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }

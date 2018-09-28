@@ -9,8 +9,8 @@ import UIKit
 
 open class Session: NSObject, NSCoding {
     
-    private(set) var accessToken: String
-    private(set) var user: MUser
+    public let accessToken: String
+    public let user: MUser
     
     init(accessToken: String, user: MUser) {
         self.accessToken = accessToken
