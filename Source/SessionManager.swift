@@ -63,17 +63,17 @@ open class SessionManager<T: MUser>: NSObject {
 
 extension SessionManager {
     
-    ///
+    /// Return user in session if it's running
     public var user: T? {
         return session?.user as? T
     }
     
-    ///
+    /// Return the secret key to auth user
     public var secretKey: String? {
         return session?.accessToken
     }
     
-    ///
+    /// Return session cached if has or get saved session and put in cache
     public var session: Session? {
         guard let cachedSession = cachedSession else {
             self.cachedSession = sessionDataStore.getSession()
@@ -99,13 +99,13 @@ extension SessionManager {
         cachedSession = try? sessionDataStore.updateSession(accessToken: secretKey, user: user)
     }
     
-    ///
+    /// Delete session and put the sessionState as expired
     public func expireSession() {
         deleteSession()
         state = .expired
     }
     
-    ///
+    /// Delete session and put the state as none
     public func logout() {
         deleteSession()
         state = .none
