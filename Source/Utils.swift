@@ -8,6 +8,7 @@
 import UIKit
 
 public typealias MUser = NSObject & NSCoding
+public typealias MAccount = (account: String, password: String)
 
 // MARK: - Enuns
 
@@ -33,4 +34,9 @@ public protocol SessionDataStoreProtocol {
 
 public protocol SessionManagerDelegate: class {
    func sessionStateDidChange(_ state: SessionState)
+}
+
+enum MKeys: String {
+   case session = "m_session_key"
+   case biometric = "m_session_biometric_enable"
 }

@@ -9,13 +9,12 @@ import Foundation
 
 class SessionDataStore: SessionDataStoreProtocol {
    
-   private let mSessionKey = "m_session_key"
    private func saveCurrentSession(_ session: Session?) {
-      KeyedArchiverManager.saveObjectWith(key: mSessionKey, object: session)
+      KeyedArchiverManager.saveObjectWith(key: MKeys.session.rawValue, object: session)
    }
    
    func getSession() -> Session? {
-      return KeyedArchiverManager.retrieveObjectWith(key: mSessionKey, type: Session.self)
+      return KeyedArchiverManager.retrieveObjectWith(key: MKeys.session.rawValue, type: Session.self)
    }
    
    func createSession(accessToken: String?, user: MUser?) throws -> Session {

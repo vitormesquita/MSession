@@ -11,6 +11,7 @@ open class SessionManager<T: MUser>: NSObject {
    
    // MARK: private
    private let sessionDataStore: SessionDataStoreProtocol
+   private let biometricAuth = BiometricAuth()
    
    private var cachedSession: Session? {
       didSet {
@@ -109,5 +110,30 @@ extension SessionManager {
    public func logout() {
       deleteSession()
       state = .none
+   }
+}
+
+extension SessionManager {
+   
+   ///
+   public func setBiometricEnable(_ isEnable: Bool) {
+      UserDefaults.standard.set(isEnable, forKey: MKeys.biometric.rawValue)
+   }
+   
+   ///
+   public func biometricIsAvailable() -> Bool {
+      return biometricAuth.canEvaluatePolicy() && UserDefaults.standard.bool(forKey: MKeys.biometric.rawValue)
+   }
+   
+   ///
+   public func biometricAuthentication(reason: String, completion: @escaping ((BiometricError?) -> Void)) {
+      return biometricAuth.authenticateUser(reason: reason, completion: completion)
+   }
+   
+   ///
+   public func authenticate(reason: String, completion: @escaping ((MAccount?, Error?) -> Void)) {
+      biometricAuthentication(reason: reason) { (error) in
+         //TODO
+      }
    }
 }
