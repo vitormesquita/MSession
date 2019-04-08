@@ -83,12 +83,12 @@
 			children = (
 				FCB8295520FBDE5D00ED8484 /* Utils.swift */,
 				FC5E5B6F225BE69E008A7C7C /* Auth */,
-				FC5E5B6E225BE5A0008A7C7C /* Session */,
+				FC5E5B6E225BE5A0008A7C7C /* Core */,
 			);
 			path = Source;
 			sourceTree = "<group>";
 		};
-		FC5E5B6E225BE5A0008A7C7C /* Session */ = {
+		FC5E5B6E225BE5A0008A7C7C /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				FC70DB5120EC28A000AEEA80 /* Session.swift */,
@@ -96,7 +96,7 @@
 				FC70DB4F20EC246400AEEA80 /* SessionDataStore.swift */,
 				FCB8295320FBDBB600ED8484 /* KeyedArchiverManager.swift */,
 			);
-			path = Session;
+			path = Core;
 			sourceTree = "<group>";
 		};
 		FC5E5B6F225BE69E008A7C7C /* Auth */ = {
