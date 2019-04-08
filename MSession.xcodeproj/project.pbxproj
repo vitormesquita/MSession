@@ -9,14 +9,16 @@
 /* Begin PBXBuildFile section */
 		FC341A262254052B008FCB70 /* BiometricAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC341A252254052B008FCB70 /* BiometricAuth.swift */; };
 		FC4E3FD120EE958400B8F91D /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4E3FD020EE958400B8F91D /* SessionManager.swift */; };
+		FC5E5B71225BE6C6008A7C7C /* SessionManager+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5E5B70225BE6C6008A7C7C /* SessionManager+Auth.swift */; };
+		FC5E5B73225BE7A4008A7C7C /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5E5B72225BE7A4008A7C7C /* KeychainPasswordItem.swift */; };
+		FC5E5B76225C0DA1008A7C7C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5E5B74225C0DA1008A7C7C /* LoginViewController.swift */; };
+		FC5E5B77225C0DA1008A7C7C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC5E5B75225C0DA1008A7C7C /* LoginViewController.xib */; };
 		FC70DB5020EC246400AEEA80 /* SessionDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC70DB4F20EC246400AEEA80 /* SessionDataStore.swift */; };
 		FC70DB5220EC28A000AEEA80 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC70DB5120EC28A000AEEA80 /* Session.swift */; };
 		FC99C85920EBECA9002F5D8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC99C85820EBECA9002F5D8E /* AppDelegate.swift */; };
-		FC99C85B20EBECA9002F5D8E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC99C85A20EBECA9002F5D8E /* ViewController.swift */; };
 		FC99C86020EBECAA002F5D8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC99C85F20EBECAA002F5D8E /* Assets.xcassets */; };
 		FC99C86320EBECAA002F5D8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC99C86120EBECAA002F5D8E /* LaunchScreen.storyboard */; };
 		FC99C86E20EBECAA002F5D8E /* MSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC99C86D20EBECAA002F5D8E /* MSessionTests.swift */; };
-		FCB2051A20FBE74C009EB2BC /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB2051920FBE74C009EB2BC /* Colors.swift */; };
 		FCB2051C20FBE8DA009EB2BC /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB2051B20FBE8DA009EB2BC /* BaseNavigationController.swift */; };
 		FCB8295420FBDBB600ED8484 /* KeyedArchiverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB8295320FBDBB600ED8484 /* KeyedArchiverManager.swift */; };
 		FCB8295620FBDE5D00ED8484 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB8295520FBDE5D00ED8484 /* Utils.swift */; };
@@ -37,18 +39,20 @@
 /* Begin PBXFileReference section */
 		FC341A252254052B008FCB70 /* BiometricAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuth.swift; sourceTree = "<group>"; };
 		FC4E3FD020EE958400B8F91D /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		FC5E5B70225BE6C6008A7C7C /* SessionManager+Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SessionManager+Auth.swift"; sourceTree = "<group>"; };
+		FC5E5B72225BE7A4008A7C7C /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
+		FC5E5B74225C0DA1008A7C7C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FC5E5B75225C0DA1008A7C7C /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		FC70DB4F20EC246400AEEA80 /* SessionDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDataStore.swift; sourceTree = "<group>"; };
 		FC70DB5120EC28A000AEEA80 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		FC99C85520EBECA9002F5D8E /* MSession.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MSession.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC99C85820EBECA9002F5D8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FC99C85A20EBECA9002F5D8E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FC99C85F20EBECAA002F5D8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC99C86220EBECAA002F5D8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC99C86420EBECAA002F5D8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC99C86920EBECAA002F5D8E /* MSessionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MSessionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC99C86D20EBECAA002F5D8E /* MSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSessionTests.swift; sourceTree = "<group>"; };
 		FC99C86F20EBECAA002F5D8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FCB2051920FBE74C009EB2BC /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		FCB2051B20FBE8DA009EB2BC /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		FCB8295320FBDBB600ED8484 /* KeyedArchiverManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedArchiverManager.swift; sourceTree = "<group>"; };
 		FCB8295520FBDE5D00ED8484 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -78,13 +82,31 @@
 			isa = PBXGroup;
 			children = (
 				FCB8295520FBDE5D00ED8484 /* Utils.swift */,
+				FC5E5B6F225BE69E008A7C7C /* Auth */,
+				FC5E5B6E225BE5A0008A7C7C /* Session */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		FC5E5B6E225BE5A0008A7C7C /* Session */ = {
+			isa = PBXGroup;
+			children = (
 				FC70DB5120EC28A000AEEA80 /* Session.swift */,
 				FC4E3FD020EE958400B8F91D /* SessionManager.swift */,
 				FC70DB4F20EC246400AEEA80 /* SessionDataStore.swift */,
 				FCB8295320FBDBB600ED8484 /* KeyedArchiverManager.swift */,
-				FC341A252254052B008FCB70 /* BiometricAuth.swift */,
 			);
-			path = Source;
+			path = Session;
+			sourceTree = "<group>";
+		};
+		FC5E5B6F225BE69E008A7C7C /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				FC341A252254052B008FCB70 /* BiometricAuth.swift */,
+				FC5E5B70225BE6C6008A7C7C /* SessionManager+Auth.swift */,
+				FC5E5B72225BE7A4008A7C7C /* KeychainPasswordItem.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		FC99C84C20EBECA9002F5D8E = {
@@ -109,11 +131,9 @@
 		FC99C85720EBECA9002F5D8E /* MSession */ = {
 			isa = PBXGroup;
 			children = (
-				FCB2051820FBE73B009EB2BC /* utils */,
 				FCB8295720FBDF1100ED8484 /* model */,
 				FCB8295C20FBE52300ED8484 /* base */,
-				FCB8295B20FBE50900ED8484 /* container */,
-				FCB8295A20FBE44B00ED8484 /* apps */,
+				FCB8295B20FBE50900ED8484 /* login */,
 				FC99C85820EBECA9002F5D8E /* AppDelegate.swift */,
 				FC99C85F20EBECAA002F5D8E /* Assets.xcassets */,
 				FC99C86120EBECAA002F5D8E /* LaunchScreen.storyboard */,
@@ -131,14 +151,6 @@
 			path = MSessionTests;
 			sourceTree = "<group>";
 		};
-		FCB2051820FBE73B009EB2BC /* utils */ = {
-			isa = PBXGroup;
-			children = (
-				FCB2051920FBE74C009EB2BC /* Colors.swift */,
-			);
-			path = utils;
-			sourceTree = "<group>";
-		};
 		FCB8295720FBDF1100ED8484 /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,19 +159,13 @@
 			path = model;
 			sourceTree = "<group>";
 		};
-		FCB8295A20FBE44B00ED8484 /* apps */ = {
+		FCB8295B20FBE50900ED8484 /* login */ = {
 			isa = PBXGroup;
 			children = (
+				FC5E5B74225C0DA1008A7C7C /* LoginViewController.swift */,
+				FC5E5B75225C0DA1008A7C7C /* LoginViewController.xib */,
 			);
-			path = apps;
-			sourceTree = "<group>";
-		};
-		FCB8295B20FBE50900ED8484 /* container */ = {
-			isa = PBXGroup;
-			children = (
-				FC99C85A20EBECA9002F5D8E /* ViewController.swift */,
-			);
-			path = container;
+			path = login;
 			sourceTree = "<group>";
 		};
 		FCB8295C20FBE52300ED8484 /* base */ = {
@@ -253,6 +259,7 @@
 			files = (
 				FC99C86320EBECAA002F5D8E /* LaunchScreen.storyboard in Resources */,
 				FC99C86020EBECAA002F5D8E /* Assets.xcassets in Resources */,
+				FC5E5B77225C0DA1008A7C7C /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,13 +278,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC70DB5220EC28A000AEEA80 /* Session.swift in Sources */,
-				FCB2051A20FBE74C009EB2BC /* Colors.swift in Sources */,
-				FC99C85B20EBECA9002F5D8E /* ViewController.swift in Sources */,
+				FC5E5B76225C0DA1008A7C7C /* LoginViewController.swift in Sources */,
+				FC5E5B73225BE7A4008A7C7C /* KeychainPasswordItem.swift in Sources */,
 				FC99C85920EBECA9002F5D8E /* AppDelegate.swift in Sources */,
 				FCB8295620FBDE5D00ED8484 /* Utils.swift in Sources */,
 				FCB8295920FBDF1A00ED8484 /* User.swift in Sources */,
 				FC341A262254052B008FCB70 /* BiometricAuth.swift in Sources */,
 				FCB8295E20FBE55300ED8484 /* BaseViewController.swift in Sources */,
+				FC5E5B71225BE6C6008A7C7C /* SessionManager+Auth.swift in Sources */,
 				FCB2051C20FBE8DA009EB2BC /* BaseNavigationController.swift in Sources */,
 				FC4E3FD120EE958400B8F91D /* SessionManager.swift in Sources */,
 				FCB8295420FBDBB600ED8484 /* KeyedArchiverManager.swift in Sources */,

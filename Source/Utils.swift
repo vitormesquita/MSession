@@ -23,6 +23,23 @@ public enum SessionDataStoreError: Error {
    case errorToCreateSession
 }
 
+public enum BiometricError: Error {
+   case notAvailable
+   case failed
+   case userCancel
+   case userFallback
+   case notEnrolled
+   case lockout
+   case notConfigured
+}
+
+public enum KeychainError: Error {
+   case noPassword
+   case unexpectedPasswordData
+   case unexpectedItemData
+   case unhandledError(status: OSStatus)
+}
+
 // MARK: - Protocols
 
 public protocol SessionDataStoreProtocol {

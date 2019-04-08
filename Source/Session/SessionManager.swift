@@ -9,9 +9,13 @@ import Foundation
 
 open class SessionManager<T: MUser>: NSObject {
    
+   // MARK: internal
+   internal var accessGroup: String?
+   internal var serviceName: String = "m_session_keychain"
+   internal let biometricAuth: BiometricAuthProtocol = BiometricAuth()
+   
    // MARK: private
    private let sessionDataStore: SessionDataStoreProtocol
-   private let biometricAuth = BiometricAuth()
    
    private var cachedSession: Session? {
       didSet {
@@ -100,40 +104,15 @@ extension SessionManager {
       cachedSession = try? sessionDataStore.updateSession(accessToken: secretKey, user: user)
    }
    
-   /// Delete session and put the sessionState as expired
+   /// Delete session and set state to expired
    public func expireSession() {
       deleteSession()
       state = .expired
    }
    
-   /// Delete session and put the state as none
+   /// Delete session and set state to none
    public func logout() {
       deleteSession()
       state = .none
-   }
-}
-
-extension SessionManager {
-   
-   ///
-   public func setBiometricEnable(_ isEnable: Bool) {
-      UserDefaults.standard.set(isEnable, forKey: MKeys.biometric.rawValue)
-   }
-   
-   ///
-   public func biometricIsAvailable() -> Bool {
-      return biometricAuth.canEvaluatePolicy() && UserDefaults.standard.bool(forKey: MKeys.biometric.rawValue)
-   }
-   
-   ///
-   public func biometricAuthentication(reason: String, completion: @escaping ((BiometricError?) -> Void)) {
-      return biometricAuth.authenticateUser(reason: reason, completion: completion)
-   }
-   
-   ///
-   public func authenticate(reason: String, completion: @escaping ((MAccount?, Error?) -> Void)) {
-      biometricAuthentication(reason: reason) { (error) in
-         //TODO
-      }
    }
 }
