@@ -1,5 +1,5 @@
 //
-//  Utils.swift
+//  SessionUtils.swift
 //  MSession
 //
 //  Created by Vitor Mesquita on 15/07/2018.
@@ -8,9 +8,8 @@
 import UIKit
 
 public typealias MUser = NSObject & NSCoding
-public typealias MAccount = (account: String, password: String)
 
-// MARK: - Enuns
+// MARK: - Enums
 
 public enum SessionState: Equatable {
    case none
@@ -21,23 +20,6 @@ public enum SessionState: Equatable {
 public enum SessionDataStoreError: Error {
    case noSessionToUpdate
    case errorToCreateSession
-}
-
-public enum BiometricError: Error {
-   case notAvailable
-   case failed
-   case userCancel
-   case userFallback
-   case notEnrolled
-   case lockout
-   case notConfigured
-}
-
-public enum KeychainError: Error {
-   case noPassword
-   case unexpectedPasswordData
-   case unexpectedItemData
-   case unhandledError(status: OSStatus)
 }
 
 // MARK: - Protocols
@@ -53,7 +35,8 @@ public protocol SessionManagerDelegate: class {
    func sessionStateDidChange(_ state: SessionState)
 }
 
-enum MKeys: String {
+enum MSessionKeys: String {
    case session = "m_session_key"
-   case biometric = "m_session_biometric_enable"
+   case user = "m_session_user"
+   case acessToken = "m_session_access_token"
 }

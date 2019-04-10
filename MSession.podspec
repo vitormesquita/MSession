@@ -12,17 +12,14 @@ Pod::Spec.new do |s|
   s.default_subspec = "All"
 
   s.subspec "All" do |ss|
-    ss.source_files  = "Source/**/*"
+    ss.source_files = "Source/**/*"
   end
 
-  s.subspec "UIKit" do |ss|
-    ss.source_files  = "Source/UIKit+Extensions/*.swift"
-    ss.framework = "UIKit"
+  s.subspec "Session" do |ss|
+    ss.source_files  = "Source/Session/*"
   end
 
-  s.subspec "Foundation" do |ss|
-    ss.source_files  = "Source/Foundation+Extensions/*.swift"
-    ss.framework = "Foundation"
+  s.subspec "Auth" do |ss|
+    ss.source_files  = "Source/Auth/*"
   end
-
 end

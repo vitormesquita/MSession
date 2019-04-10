@@ -9,11 +9,6 @@ import Foundation
 
 open class SessionManager<T: MUser>: NSObject {
    
-   // MARK: internal
-   internal var accessGroup: String?
-   internal var serviceName: String = "m_session_keychain"
-   internal let biometricAuth: BiometricAuthProtocol = BiometricAuth()
-   
    // MARK: private
    private let sessionDataStore: SessionDataStoreProtocol
    

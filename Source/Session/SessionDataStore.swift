@@ -10,11 +10,11 @@ import Foundation
 class SessionDataStore: SessionDataStoreProtocol {
    
    private func saveCurrentSession(_ session: Session?) {
-      KeyedArchiverManager.saveObjectWith(key: MKeys.session.rawValue, object: session)
+      KeyedArchiverManager.saveObjectWith(key: MSessionKeys.session.rawValue, object: session)
    }
    
    func getSession() -> Session? {
-      return KeyedArchiverManager.retrieveObjectWith(key: MKeys.session.rawValue, type: Session.self)
+      return KeyedArchiverManager.retrieveObjectWith(key: MSessionKeys.session.rawValue, type: Session.self)
    }
    
    func createSession(accessToken: String?, user: MUser?) throws -> Session {
@@ -22,7 +22,7 @@ class SessionDataStore: SessionDataStoreProtocol {
          throw SessionDataStoreError.errorToCreateSession
       }
       
-      let newSession = Session(accessToken: accessToken, user: user)
+      let newSession = Session(user: user, accessToken: accessToken)
       saveCurrentSession(newSession)
       return newSession
    }
@@ -32,7 +32,7 @@ class SessionDataStore: SessionDataStoreProtocol {
          throw SessionDataStoreError.noSessionToUpdate
       }
       
-      let updatedSession = Session(accessToken: accessToken ?? session.accessToken, user: user ?? session.user)
+      let updatedSession = Session(user: user ?? session.user, accessToken: accessToken ?? session.accessToken)
       saveCurrentSession(updatedSession)
       return updatedSession
    }

@@ -9,10 +9,11 @@ import LocalAuthentication
 
 protocol BiometricAuthProtocol {
    func canEvaluatePolicy() -> Bool
-   func biometricType() -> LABiometryType
+   func biometricType() -> BiometryType
    func authenticateUser(reason: String, completion: @escaping (BiometricError?) -> Void)
 }
 
+@available(iOS 11.0, *)
 class BiometricAuth: BiometricAuthProtocol {
    
    private let context = LAContext()
@@ -21,9 +22,17 @@ class BiometricAuth: BiometricAuthProtocol {
       return context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
    }
    
-   func biometricType() -> LABiometryType {
+   func biometricType() -> BiometryType {
       let _ = canEvaluatePolicy()
-      return context.biometryType
+      
+      switch context.biometryType {
+      case .none:
+         return .none
+      case .faceID:
+         return .faceID
+      case .touchID:
+         return .touchID
+      }
    }
    
    func authenticateUser(reason: String, completion: @escaping (BiometricError?) -> Void) {
