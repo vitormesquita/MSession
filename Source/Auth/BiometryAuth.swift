@@ -7,14 +7,14 @@
 
 import LocalAuthentication
 
-protocol BiometricAuthProtocol {
+protocol BiometryAuthProtocol {
    func canEvaluatePolicy() -> Bool
-   func biometricType() -> BiometryType
-   func authenticateUser(reason: String, completion: @escaping (BiometricError?) -> Void)
+   func biometryType() -> BiometryType
+   func authenticateUser(reason: String, completion: @escaping (BiometryError?) -> Void)
 }
 
 @available(iOS 11.0, *)
-class BiometricAuth: BiometricAuthProtocol {
+class BiometryAuth: BiometryAuthProtocol {
    
    private let context = LAContext()
    
@@ -22,7 +22,7 @@ class BiometricAuth: BiometricAuthProtocol {
       return context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
    }
    
-   func biometricType() -> BiometryType {
+   func biometryType() -> BiometryType {
       let _ = canEvaluatePolicy()
       
       switch context.biometryType {
@@ -35,7 +35,7 @@ class BiometricAuth: BiometricAuthProtocol {
       }
    }
    
-   func authenticateUser(reason: String, completion: @escaping (BiometricError?) -> Void) {
+   func authenticateUser(reason: String, completion: @escaping (BiometryError?) -> Void) {
       guard canEvaluatePolicy() else {
          completion(.notAvailable)
          return
@@ -48,7 +48,7 @@ class BiometricAuth: BiometricAuthProtocol {
                return
             }
             
-            let error: BiometricError?
+            let error: BiometryError?
             switch evaluateError {
             case LAError.authenticationFailed?:
                error = .failed

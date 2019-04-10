@@ -17,4 +17,8 @@ class BaseViewController: UIViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
    }
+   
+   deinit {
+      print("dealloc ---> \(String(describing: type(of: self)))")
+   }
 }

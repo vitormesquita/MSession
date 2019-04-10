@@ -11,7 +11,7 @@ class AuthManager: NSObject {
    
    private var serviceName: String
    private var accessGroup: String?
-   private var biometricAuth: BiometricAuthProtocol?
+   private var biometryAuth: BiometryAuthProtocol?
    
    public init(serviceName: String, accessGroup: String? = nil) {
       self.serviceName = serviceName
@@ -19,8 +19,7 @@ class AuthManager: NSObject {
       super.init()
       
       if #available(iOS 11.0, *) {
-         self.biometricAuth = BiometricAuth()
-         self.setBiometricEnable(true)
+         self.biometryAuth = BiometryAuth()
       }
    }
    
@@ -44,17 +43,22 @@ class AuthManager: NSObject {
 
 extension AuthManager {
    
-   /// Set if your application can use biometric authentication
+   ///
+   var biometryType: BiometryType {
+      return biometryAuth?.biometryType() ?? .none
+   }
+   
+   /// Inform if your application can use biometry authentication automatically and has any password saved on kaychain
    /// Normally on sign in the user can set if want use biometric authentication or not
-   @available(iOS 11.0, *)
-   public func setBiometricEnable(_ isEnable: Bool) {
-      UserDefaults.standard.set(isEnable, forKey: MAuthKeys.biometric.rawValue)
+   var automaticallyBiometryAuth: Bool {
+      get { return UserDefaults.standard.bool(forKey: MAuthKeys.biometric.rawValue) }
+      set { UserDefaults.standard.set(newValue, forKey: MAuthKeys.biometric.rawValue) }
    }
    
    /// Return a flag if biometric is available
    @available(iOS 11.0, *)
-   public func biometricIsAvailable() -> Bool {
-      return (biometricAuth?.canEvaluatePolicy() ?? false) && UserDefaults.standard.bool(forKey: MAuthKeys.biometric.rawValue)
+   public func biometryIsAvailable() -> Bool {
+      return (biometryAuth?.canEvaluatePolicy() ?? false)
    }
    
    /// Call Face/Touch ID
@@ -62,13 +66,13 @@ extension AuthManager {
    ///   - reason: Tell a reason why you want use Face/Touch ID authentication
    ///   - completion: Block to handle if has authentication or an error
    @available(iOS 11.0, *)
-   public func biometricAuthentication(reason: String, completion: @escaping ((BiometricError?) -> Void)) {
-      guard biometricIsAvailable() else {
-         completion(BiometricError.notAvailable)
+   public func biometryAuthentication(reason: String, completion: @escaping ((BiometryError?) -> Void)) {
+      guard biometryIsAvailable() else {
+         completion(BiometryError.notAvailable)
          return
       }
       
-      biometricAuth?.authenticateUser(reason: reason, completion: completion)
+      biometryAuth?.authenticateUser(reason: reason, completion: completion)
    }
 }
 
@@ -108,7 +112,7 @@ extension AuthManager {
    ///   - completion: Block to return an Array of `MAccount` or an error
    @available(iOS 11.0, *)
    public func getSavedAccountsWithBiometric(reason: String, completion: @escaping (([MAccount], Error?) -> Void)) {
-      biometricAuthentication(reason: reason) { (error) in
+      biometryAuthentication(reason: reason) { (error) in
          guard error == nil else {
             completion([], error)
             return

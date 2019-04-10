@@ -17,6 +17,11 @@ class BaseNavigationController: UINavigationController {
       super.viewDidLoad()
       
       navigationBar.isTranslucent = false
+      navigationBar.barTintColor = .primary
       navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+   }
+   
+   deinit {
+      print("dealloc ---> \(String(describing: type(of: self)))")
    }
 }

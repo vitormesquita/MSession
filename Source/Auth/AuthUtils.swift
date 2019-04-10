@@ -11,7 +11,13 @@ public typealias MAccount = (account: String, password: String)
 
 // MARK: - Enums
 
-public enum BiometricError: Error {
+public enum BiometryType {
+   case none
+   case faceID
+   case touchID
+}
+
+public enum BiometryError: Error {
    case notAvailable
    case failed
    case userCancel
@@ -26,12 +32,6 @@ public enum KeychainError: Error {
    case unexpectedPasswordData
    case unexpectedItemData
    case unhandledError(status: OSStatus)
-}
-
-public enum BiometryType {
-   case none
-   case faceID
-   case touchID
 }
 
 enum MAuthKeys: String {

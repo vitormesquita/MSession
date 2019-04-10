@@ -15,12 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
       
       let window = UIWindow()
-      let mainNavigation = BaseNavigationController(rootViewController: LoginViewController())
+      let mainNavigation = BaseNavigationController(rootViewController: LoginViewController(nibName: "LoginViewController", bundle: nil))
       window.rootViewController = mainNavigation
       self.window = window
       self.window?.makeKeyAndVisible()
       
       return true
+   }
+   
+   func replaceRootViewControllerTo(viewController: UIViewController) {
+      guard let window = window else { return }
+      UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+         window.rootViewController = viewController
+      })
    }
 }
 
