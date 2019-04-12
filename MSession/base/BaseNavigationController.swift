@@ -16,6 +16,7 @@ class BaseNavigationController: UINavigationController {
    override func viewDidLoad() {
       super.viewDidLoad()
       
+      navigationBar.tintColor = .white
       navigationBar.isTranslucent = false
       navigationBar.barTintColor = .primary
       navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]

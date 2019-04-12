@@ -39,6 +39,21 @@ class AuthManager: NSObject {
       
       return accounts
    }
+   
+   /// Delete all saved accounts excluding accounts passing as parameters
+   private func deleteSavedAccountsExclude(accounts: [String]) {
+      do {
+         let passwordItems = try KeychainPasswordItem.passwordItems(forService: self.serviceName, accessGroup: self.accessGroup)
+         
+         for item in passwordItems {
+            guard !accounts.contains(item.account) else { continue }
+            try item.deleteItem()
+         }
+         
+      } catch(let error) {
+         print(error.localizedDescription)
+      }
+   }
 }
 
 extension AuthManager {
@@ -94,16 +109,24 @@ extension AuthManager {
    /// - Parameters:
    ///   - account: An account like email, username or something like that
    ///   - password: Password to be saved
+   ///   - deleteOthers: Flag to delete the others passwords
    ///   - completion: Block to handle if it returns an error and cannot saved this Account
-   public func saveAccount(account: String, password: String, completion: ((Error?) -> Void)) {
+   public func saveAccount(account: String, password: String, deleteOthers: Bool = false, completion: ((Error?) -> Void)? = nil) {
+      var completionError: Error?
       do {
          let keychain = KeychainPasswordItem(service: self.serviceName, account: account, accessGroup: self.accessGroup)
          try keychain.savePassword(password)
-         completion(nil)
+         
+         if deleteOthers {
+            self.deleteSavedAccountsExclude(accounts: [account])
+         }
          
       } catch(let error) {
-         completion(error)
+         completionError = error
       }
+      
+      guard let completion = completion else { return }
+      completion(completionError)
    }
    
    /// Get all saved kaychain passwords with biometric authentication

@@ -33,6 +33,8 @@ class LoginViewController: BaseViewController {
       
       passwordTextField.delegate = self
       passwordTextField.addTarget(self, action: #selector(self.textDidChange), for: .editingChanged)
+      
+      loginButton.addTarget(self, action: #selector(self.signInDidTap), for: .touchUpInside)
    }
    
    private func applyLayout() {
@@ -60,13 +62,8 @@ class LoginViewController: BaseViewController {
       biometryIDContainerView.isHidden = !viewModel.biometryEnable
       biometryIDSwitch.isOn = viewModel.automaticallySigninIsEnable
       
-      viewModel.shouldHideForm = {[unowned self] isHidden in
-         self.containerView.isHidden = isHidden
-      }
-      
-      viewModel.loggedIn = {
-         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-         appDelegate.replaceRootViewControllerTo(viewController: BaseNavigationController(rootViewController: DashboardViewController()))
+      viewModel.formVisibility = {[unowned self] isVisible in
+         self.containerView.isHidden = !isVisible
       }
    }
    

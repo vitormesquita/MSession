@@ -13,6 +13,7 @@
 		FC24525D225E7091000CDD21 /* AppAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC24525C225E7091000CDD21 /* AppAuthManager.swift */; };
 		FC24525F225E97BC000CDD21 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC24525E225E97BC000CDD21 /* Button.swift */; };
 		FC245262225E9D52000CDD21 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC245261225E9D52000CDD21 /* DashboardViewController.swift */; };
+		FC245264225F7915000CDD21 /* AppSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC245263225F7915000CDD21 /* AppSessionManager.swift */; };
 		FC341A262254052B008FCB70 /* BiometryAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC341A252254052B008FCB70 /* BiometryAuth.swift */; };
 		FC4E3FD120EE958400B8F91D /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4E3FD020EE958400B8F91D /* SessionManager.swift */; };
 		FC5E5B73225BE7A4008A7C7C /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5E5B72225BE7A4008A7C7C /* KeychainPasswordItem.swift */; };
@@ -49,6 +50,7 @@
 		FC24525C225E7091000CDD21 /* AppAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAuthManager.swift; sourceTree = "<group>"; };
 		FC24525E225E97BC000CDD21 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		FC245261225E9D52000CDD21 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		FC245263225F7915000CDD21 /* AppSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSessionManager.swift; sourceTree = "<group>"; };
 		FC341A252254052B008FCB70 /* BiometryAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometryAuth.swift; sourceTree = "<group>"; };
 		FC4E3FD020EE958400B8F91D /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		FC5E5B72225BE7A4008A7C7C /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
@@ -110,8 +112,8 @@
 		FC545E5320EBF678005EB0FC /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				FC5E5B6E225BE5A0008A7C7C /* Session */,
 				FC5E5B6F225BE69E008A7C7C /* Auth */,
+				FC5E5B6E225BE5A0008A7C7C /* Session */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				FC24525C225E7091000CDD21 /* AppAuthManager.swift */,
+				FC245263225F7915000CDD21 /* AppSessionManager.swift */,
 				FC245259225E6EE1000CDD21 /* utils */,
 				FCB8295720FBDF1100ED8484 /* model */,
 				FCB8295C20FBE52300ED8484 /* base */,
@@ -329,6 +332,7 @@
 				FCB2051C20FBE8DA009EB2BC /* BaseNavigationController.swift in Sources */,
 				FC4E3FD120EE958400B8F91D /* SessionManager.swift in Sources */,
 				FCB8295420FBDBB600ED8484 /* KeyedArchiverManager.swift in Sources */,
+				FC245264225F7915000CDD21 /* AppSessionManager.swift in Sources */,
 				FC70DB5020EC246400AEEA80 /* SessionDataStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

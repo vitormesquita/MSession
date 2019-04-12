@@ -55,14 +55,6 @@ open class SessionManager<T: MUser>: NSObject {
       super.init()
    }
    
-   private func deleteSession() {
-      sessionDataStore.deleteSession()
-      cachedSession = nil
-   }
-}
-
-extension SessionManager {
-   
    /// Return user in session if it's running
    public var user: T? {
       return session?.user as? T
@@ -88,7 +80,7 @@ extension SessionManager {
    ///     - secretKey: Secret Key returned through webservice after authentication (token or hashs) to validate requests on webservice
    ///     - user: User returned through webservice after authentication that session needs to be created
    public func createSession(secretKey: String?, user: T?) throws {
-      cachedSession = try? sessionDataStore.createSession(accessToken: secretKey, user: user)
+      cachedSession = try sessionDataStore.createSession(accessToken: secretKey, user: user)
    }
    
    /// Update session on your app
@@ -96,7 +88,7 @@ extension SessionManager {
    ///     - secretKey: If return `nil` will user old value saved
    ///     - user: If return `nil` will user old value saved
    public func updateSession(secretKey: String?, user: T?) throws {
-      cachedSession = try? sessionDataStore.updateSession(accessToken: secretKey, user: user)
+      cachedSession = try sessionDataStore.updateSession(accessToken: secretKey, user: user)
    }
    
    /// Delete session and set state to expired
@@ -109,5 +101,12 @@ extension SessionManager {
    public func logout() {
       deleteSession()
       state = .none
+   }
+   
+   // MARK: - Private
+   
+   private func deleteSession() {
+      sessionDataStore.deleteSession()
+      cachedSession = nil
    }
 }

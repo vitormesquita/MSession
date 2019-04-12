@@ -13,8 +13,7 @@ protocol LoginViewModelProtocol {
    var biometryText: String? { get }
    var automaticallySigninIsEnable: Bool { get }
    
-   var loggedIn: (() -> Void)? { get set }
-   var shouldHideForm: ((Bool) -> Void)? { get set }
+   var formVisibility: ((Bool) -> Void)? { get set }
    
    func viewDidLoad()
    func signIn(email: String?, password: String?, biometry: Bool)
@@ -23,49 +22,56 @@ protocol LoginViewModelProtocol {
 class LoginViewModel {
    
    var loggedIn: (() -> Void)?
-   var shouldHideForm: ((Bool) -> Void)?
+   var formVisibility: ((Bool) -> Void)?
    
-   private func formVisibility(isHidden: Bool) {
-      guard let shouldHideFormBlock = shouldHideForm else { return }
-      shouldHideFormBlock(isHidden)
+   private var formVisible: Bool = false {
+      didSet {
+         guard let formVisibility = formVisibility else { return }
+         formVisibility(formVisible)
+      }
+   }
+}
+
+extension LoginViewModel {
+   
+   private func loginWith(email: String, password: String) {
+      if email == "mano@gmail.com" && password == "12345" {
+         AppAuthManager.shared.saveAccount(account: email, password: password, deleteOthers: true)
+         
+         do {
+            try AppSessionManager.shared.createSession(secretKey: "token", user: User(id: 0, name: "Mano", email: "mano@gmail.com"))
+         } catch {
+            //handler with error
+         }
+         
+      } else {
+         formVisible = true
+      }
    }
    
    private func handleAuthAutomatically() {
       guard #available(iOS 11.0, *), AppAuthManager.shared.automaticallyBiometryAuth else {
-         formVisibility(isHidden: false)
+         formVisible = true
          return
       }
       
       authenticate()
-      formVisibility(isHidden: true)
+      formVisible = false
    }
    
+   @available(iOS 11.0, *)
    private func authenticate() {
-      guard #available(iOS 11.0, *) else { return }
-      
       AppAuthManager.shared.getSavedAccountsWithBiometric(reason: "An reason that I don't know") {[weak self] (accounts, error) in
          guard let self = self else { return }
-         self.formVisibility(isHidden: !accounts.isEmpty && error == nil)
+         self.formVisible = accounts.isEmpty || error != nil
          
          if error != nil {
             //handler with error
          }
          
-         if let firstAccount = accounts.first {
+         print(accounts)
+         if let firstAccount = accounts.last {
             self.loginWith(email: firstAccount.account, password: firstAccount.password)
-         }
-      }
-   }
-   
-   private func loginWith(email: String, password: String) {
-      if email == "mano@jera.com.br" && password == "secret123" {
-         
-         AppAuthManager.shared.saveAccount(account: email, password: password) { (error) in
-            print(error?.localizedDescription ?? "saved with success")
-         }
-         
-         if let loggedInBlock = loggedIn {
-            loggedInBlock()
          }
       }
    }
