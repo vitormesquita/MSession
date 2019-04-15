@@ -92,7 +92,7 @@ class AppSessionDataStore: SessionDataStoreProtocol {
 }
 ```
 
-And pass these DataStore to your SessionManager
+And pass the new DataStore to your SessionManager
 
 ```swift
 import MSession
