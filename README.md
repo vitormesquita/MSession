@@ -73,6 +73,7 @@ class AppSessionManager: SessionManager<User> {
 
  let shared = AppSessionManager()	
  ...
+ 
 }
 ```
 
