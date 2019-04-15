@@ -28,7 +28,8 @@ open class SessionManager<T: MUser>: NSObject {
       }
    }
    
-   // MARK: public
+   // MARK: - Public
+   
    public weak var delegate: SessionManagerDelegate?
    
    public init(sessionDataStore: SessionDataStoreProtocol) {
