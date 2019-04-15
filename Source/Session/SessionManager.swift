@@ -32,8 +32,8 @@ open class SessionManager<T: AnyObject>: NSObject {
    
    public weak var delegate: SessionManagerDelegate?
    
-   public init(sessionDataStore: SessionDataStoreProtocol) {
-      self.sessionDataStore = sessionDataStore
+   public init(dataStore: SessionDataStoreProtocol) {
+      self.sessionDataStore = dataStore
       
       if (sessionDataStore.getSession(type: T.self)) != nil {
          self.state = .runnig

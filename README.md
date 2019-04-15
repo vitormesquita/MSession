@@ -58,7 +58,7 @@ So basically to use this module you need to have a instance of this class ***(no
 **Create a shared instante:**
 
 ```swift
-let shared = SessionManager<User>()
+static let shared = SessionManager<User>()
 ```
 
 
@@ -71,7 +71,7 @@ import MSession
 
 class AppSessionManager: SessionManager<User> {
 
- let shared = AppSessionManager()	
+ static let shared = AppSessionManager()
  ...
  
 }
@@ -88,8 +88,20 @@ If you want create a local store with realm or core data you can use MSession as
 import MSession
 
 class AppSessionDataStore: SessionDataStoreProtocol {
+ // implemet all methods
+}
+```
 
-	// All methods implemented
+And pass these DataStore to your SessionManager
+
+```swift
+import MSession
+
+class AppSessionManager: SessionManager<User> {
+
+ static let shared = AppSessionManager(dataStore: AppSessionDataStore())
+ ...
+ 
 }
 ```
 
