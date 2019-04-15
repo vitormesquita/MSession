@@ -71,8 +71,8 @@ import MSession
 
 class AppSessionManager: SessionManager<User> {
 
-	let shared = AppSessionManager()	
-	...
+ let shared = AppSessionManager()	
+ ...
 }
 ```
 
