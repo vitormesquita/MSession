@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AuthManager: NSObject {
+open class AuthManager: NSObject {
    
    private var serviceName: String
    private var accessGroup: String?
@@ -59,20 +59,20 @@ class AuthManager: NSObject {
 extension AuthManager {
    
    /// Return biometry type the device has Face ID or Touch ID
-   var biometryType: BiometryType {
+   public var biometryType: BiometryType {
       return biometryAuth?.biometryType() ?? .none
    }
    
    /// Inform if your application can use biometry authentication automatically
    /// Normally on sign in the user can set if want use biometric authentication
-   var automaticallyBiometryAuth: Bool {
+   public var automaticallyBiometryAuth: Bool {
       get { return UserDefaults.standard.bool(forKey: MAuthKeys.biometric.rawValue) }
       set { UserDefaults.standard.set(newValue, forKey: MAuthKeys.biometric.rawValue) }
    }
    
    /// Return a flag if biometric is available
    @available(iOS 11.0, *)
-   public func biometryIsAvailable() -> Bool {
+   open func biometryIsAvailable() -> Bool {
       return (biometryAuth?.canEvaluatePolicy() ?? false)
    }
    
@@ -81,7 +81,7 @@ extension AuthManager {
    ///   - reason: Tell a reason why you want use Face/Touch ID authentication
    ///   - completion: Closure to handle if was authenticated or had an error
    @available(iOS 11.0, *)
-   public func biometryAuthentication(reason: String, completion: @escaping ((BiometryError?) -> Void)) {
+   open func biometryAuthentication(reason: String, completion: @escaping ((BiometryError?) -> Void)) {
       guard biometryIsAvailable() else {
          completion(BiometryError.notAvailable)
          return
@@ -96,7 +96,7 @@ extension AuthManager {
    
    /// Get all saved keychain passwords
    /// - parameter completion: Closure to return an Array of `MAccount` or an error
-   public func getSavedAccounts(completion: @escaping (([MAccount], Error?) -> Void)) {
+   open func getSavedAccounts(completion: @escaping (([MAccount], Error?) -> Void)) {
       do {
          let items = try getSavedAccounts()
          completion(items, nil)
@@ -111,7 +111,7 @@ extension AuthManager {
    ///   - password: Password to be saved
    ///   - deleteOthers: Flag to delete the others passwords
    ///   - completion: Closure to handle if it returns an error and cannot saved this Account
-   public func saveAccount(account: String, password: String, deleteOthers: Bool = false, completion: ((Error?) -> Void)? = nil) {
+   open func saveAccount(account: String, password: String, deleteOthers: Bool = false, completion: ((Error?) -> Void)? = nil) {
       var completionError: Error?
       do {
          let keychain = KeychainPasswordItem(service: self.serviceName, account: account, accessGroup: self.accessGroup)
@@ -134,7 +134,7 @@ extension AuthManager {
    ///   - reason: Tell a reason why you want use Face/Touch ID authentication
    ///   - completion: Closure to return an Array of `MAccount` or an error
    @available(iOS 11.0, *)
-   public func getSavedAccountsWithBiometric(reason: String, completion: @escaping (([MAccount], Error?) -> Void)) {
+   open func getSavedAccountsWithBiometric(reason: String, completion: @escaping (([MAccount], Error?) -> Void)) {
       biometryAuthentication(reason: reason) { (error) in
          guard error == nil else {
             completion([], error)

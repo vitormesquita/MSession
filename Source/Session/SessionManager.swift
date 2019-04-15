@@ -80,7 +80,7 @@ open class SessionManager<T: MUser>: NSObject {
    /// - Parameters:
    ///     - secretKey: Secret Key returned through webservice after authentication (token or hashs) to validate requests on webservice
    ///     - user: User returned through webservice after authentication that session needs to be created
-   public func createSession(secretKey: String?, user: T?) throws {
+   open func createSession(secretKey: String?, user: T?) throws {
       cachedSession = try sessionDataStore.createSession(accessToken: secretKey, user: user)
    }
    
@@ -88,18 +88,18 @@ open class SessionManager<T: MUser>: NSObject {
    /// - Parameters:
    ///     - secretKey: If return `nil` will user old value saved
    ///     - user: If return `nil` will user old value saved
-   public func updateSession(secretKey: String?, user: T?) throws {
+   open func updateSession(secretKey: String?, user: T?) throws {
       cachedSession = try sessionDataStore.updateSession(accessToken: secretKey, user: user)
    }
    
    /// Delete session and set state to expired
-   public func expireSession() {
+   open func expireSession() {
       deleteSession()
       state = .expired
    }
    
    /// Delete session and set state to none
-   public func logout() {
+   open func logout() {
       deleteSession()
       state = .none
    }

@@ -12,7 +12,7 @@ open class Session: NSObject, NSCoding {
    public let user: MUser
    public let accessToken: String
    
-   init(user: MUser, accessToken: String) {
+   public init(user: MUser, accessToken: String) {
       self.user = user
       self.accessToken = accessToken
    }
