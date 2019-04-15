@@ -7,14 +7,14 @@
 
 import UIKit
 
-public typealias MUser = NSObject & NSCoding
+public typealias MSession = (secretKey: String, user: AnyObject)
 
 // MARK: - Enums
 
 public enum SessionState: Equatable {
    case none
    case expired
-   case runnig(Session)
+   case runnig
 }
 
 public enum SessionDataStoreError: Error {
@@ -25,9 +25,9 @@ public enum SessionDataStoreError: Error {
 // MARK: - Protocols
 
 public protocol SessionDataStoreProtocol {
-   func getSession() -> Session?
-   func createSession(accessToken: String?, user: MUser?) throws -> Session
-   func updateSession(accessToken: String?, user: MUser?) throws -> Session
+   func getSession<T: AnyObject>(type: T.Type) -> MSession?
+   func createSession<T: AnyObject>(secretKey: String?, user: T?) throws -> MSession
+   func updateSession<T: AnyObject>(secretKey: String?, user: T?) throws -> MSession
    func deleteSession()
 }
 
@@ -36,7 +36,6 @@ public protocol SessionManagerDelegate: class {
 }
 
 enum MSessionKeys: String {
-   case session = "m_session_key"
    case user = "m_session_user"
-   case acessToken = "m_session_access_token"
+   case secretKey = "m_session_secret_key"
 }

@@ -49,9 +49,9 @@ If you don't use any dependency managers, you can integrate MSession in your pro
 
 ## Session
 
-Session module contains all classes to manage an app session and all this module runs around the `SessionManager<T: MUser>` class. This class is in charge to deal with ***create, update, expire and logout*** app session.
+Session module contains all classes to manage an app session and all this module runs around the `SessionManager<T: AnyObject>` class. This class is in charge to deal with ***create, update, expire and logout*** app session.
 
-SessionManager by default needs a `NSObject & NSCoding` object to save on session. This object will be your "user" or "client" into application.
+SessionManager by default needs a `AnyObject` to save on session. This object will be your "user" or "client" into application.
 
 So basically to use this module you need to have a instance of this class ***(normally is a shared instance)***.
 
@@ -79,8 +79,6 @@ class AppSessionManager: SessionManager<User> {
 
 *Create your own class is the most appropriate*
 
-<!--
-TODO update code to accept any data store
 
 `SessionManager` by default has a `DataStore` implementation called `SessionDataStore`, this implementation is using `NSKeyedArchiver` and `UserDefaults` to save sassion. 
 
@@ -94,5 +92,6 @@ class AppSessionDataStore: SessionDataStoreProtocol {
 	// All methods implemented
 }
 ```
--->
+
+**OBS: If you are using defaul DataStore (SessionDataStore) you MUST make your `User` extends `NSObject & NSCoding`**
 

@@ -9,35 +9,42 @@ import Foundation
 
 class SessionDataStore: SessionDataStoreProtocol {
    
-   private func saveCurrentSession(_ session: Session?) {
-      KeyedArchiverManager.saveObjectWith(key: MSessionKeys.session.rawValue, object: session)
+   private func saveCurrentSession<T: AnyObject>(secretKey: String, user: T) -> MSession {
+      KeyedArchiverManager.saveObjectWith(key: MSessionKeys.user.rawValue, object: user)
+      KeyedArchiverManager.saveString(key: MSessionKeys.secretKey.rawValue, value: secretKey)
+      
+      return MSession(secretKey, user)
    }
    
-   func getSession() -> Session? {
-      return KeyedArchiverManager.retrieveObjectWith(key: MSessionKeys.session.rawValue, type: Session.self)
+   func getSession<T: AnyObject>(type: T.Type) -> MSession? {
+      guard let secretKey = KeyedArchiverManager.retrieveStringWith(key: MSessionKeys.secretKey.rawValue),
+         let user = KeyedArchiverManager.retrieveObjectWith(key: MSessionKeys.user.rawValue, type: type) else {
+         return nil
+      }
+      
+      return MSession(secretKey, user)
    }
    
-   func createSession(accessToken: String?, user: MUser?) throws -> Session {
-      guard let accessToken = accessToken, let user = user else {
+   func createSession<T>(secretKey: String?, user: T?) throws -> MSession where T : AnyObject {
+      guard let secretKey = secretKey, let user = user else {
          throw SessionDataStoreError.errorToCreateSession
       }
       
-      let newSession = Session(user: user, accessToken: accessToken)
-      saveCurrentSession(newSession)
+      let newSession = saveCurrentSession(secretKey: secretKey, user: user)
       return newSession
    }
    
-   func updateSession(accessToken: String?, user: MUser?) throws -> Session {
-      guard let session = getSession() else {
+   func updateSession<T>(secretKey: String?, user: T?) throws -> MSession where T : AnyObject {
+      guard let session = getSession(type: T.self) else {
          throw SessionDataStoreError.noSessionToUpdate
       }
       
-      let updatedSession = Session(user: user ?? session.user, accessToken: accessToken ?? session.accessToken)
-      saveCurrentSession(updatedSession)
+      let updatedSession = saveCurrentSession(secretKey: secretKey ?? session.secretKey, user: user ?? session.user)
       return updatedSession
    }
    
    func deleteSession() {
-      saveCurrentSession(nil)
+      KeyedArchiverManager.saveObjectWith(key: MSessionKeys.user.rawValue, object: nil)
+      KeyedArchiverManager.saveString(key: MSessionKeys.secretKey.rawValue, value: nil)
    }
 }

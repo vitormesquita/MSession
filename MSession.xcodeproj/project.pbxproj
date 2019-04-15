@@ -21,7 +21,6 @@
 		FC5E5B77225C0DA1008A7C7C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC5E5B75225C0DA1008A7C7C /* LoginViewController.xib */; };
 		FC5E5B79225D4AEF008A7C7C /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5E5B78225D4AEF008A7C7C /* AuthManager.swift */; };
 		FC70DB5020EC246400AEEA80 /* SessionDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC70DB4F20EC246400AEEA80 /* SessionDataStore.swift */; };
-		FC70DB5220EC28A000AEEA80 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC70DB5120EC28A000AEEA80 /* Session.swift */; };
 		FC99C85920EBECA9002F5D8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC99C85820EBECA9002F5D8E /* AppDelegate.swift */; };
 		FC99C86020EBECAA002F5D8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC99C85F20EBECAA002F5D8E /* Assets.xcassets */; };
 		FC99C86320EBECAA002F5D8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC99C86120EBECAA002F5D8E /* LaunchScreen.storyboard */; };
@@ -58,7 +57,6 @@
 		FC5E5B75225C0DA1008A7C7C /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		FC5E5B78225D4AEF008A7C7C /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		FC70DB4F20EC246400AEEA80 /* SessionDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDataStore.swift; sourceTree = "<group>"; };
-		FC70DB5120EC28A000AEEA80 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		FC99C85520EBECA9002F5D8E /* MSession.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MSession.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC99C85820EBECA9002F5D8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC99C85F20EBECAA002F5D8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -122,7 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				FCB8295520FBDE5D00ED8484 /* SessionUtils.swift */,
-				FC70DB5120EC28A000AEEA80 /* Session.swift */,
 				FC4E3FD020EE958400B8F91D /* SessionManager.swift */,
 				FC70DB4F20EC246400AEEA80 /* SessionDataStore.swift */,
 				FCB8295320FBDBB600ED8484 /* KeyedArchiverManager.swift */,
@@ -316,7 +313,6 @@
 			files = (
 				FC245262225E9D52000CDD21 /* DashboardViewController.swift in Sources */,
 				FC24525D225E7091000CDD21 /* AppAuthManager.swift in Sources */,
-				FC70DB5220EC28A000AEEA80 /* Session.swift in Sources */,
 				FC5E5B79225D4AEF008A7C7C /* AuthManager.swift in Sources */,
 				FC5E5B76225C0DA1008A7C7C /* LoginViewController.swift in Sources */,
 				FC245256225E2B3D000CDD21 /* AuthUtils.swift in Sources */,

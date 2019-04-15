@@ -7,15 +7,15 @@
 
 import Foundation
 
-open class SessionManager<T: MUser>: NSObject {
+open class SessionManager<T: AnyObject>: NSObject {
    
    // MARK: private
    private let sessionDataStore: SessionDataStoreProtocol
    
-   private var cachedSession: Session? {
+   private var cachedSession: MSession? {
       didSet {
-         if let cachedSession = cachedSession {
-            state = .runnig(cachedSession)
+         if cachedSession != nil {
+            state = .runnig
          }
       }
    }
@@ -35,8 +35,8 @@ open class SessionManager<T: MUser>: NSObject {
    public init(sessionDataStore: SessionDataStoreProtocol) {
       self.sessionDataStore = sessionDataStore
       
-      if let session = sessionDataStore.getSession() {
-         self.state = .runnig(session)
+      if (sessionDataStore.getSession(type: T.self)) != nil {
+         self.state = .runnig
       } else {
          self.state = .none
       }
@@ -47,8 +47,8 @@ open class SessionManager<T: MUser>: NSObject {
    public override init() {
       self.sessionDataStore = SessionDataStore()
       
-      if let session = sessionDataStore.getSession() {
-         self.state = .runnig(session)
+      if (sessionDataStore.getSession(type: T.self)) != nil {
+         self.state = .runnig
       } else {
          self.state = .none
       }
@@ -63,13 +63,13 @@ open class SessionManager<T: MUser>: NSObject {
    
    /// Return the secret key to auth user
    public var secretKey: String? {
-      return session?.accessToken
+      return session?.secretKey
    }
    
    /// Return session cached if has or get saved session and put in cache
-   public var session: Session? {
+   public var session: MSession? {
       guard let cachedSession = cachedSession else {
-         self.cachedSession = sessionDataStore.getSession()
+         self.cachedSession = sessionDataStore.getSession(type: T.self)
          return self.cachedSession
       }
       
@@ -81,7 +81,7 @@ open class SessionManager<T: MUser>: NSObject {
    ///     - secretKey: Secret Key returned through webservice after authentication (token or hashs) to validate requests on webservice
    ///     - user: User returned through webservice after authentication that session needs to be created
    open func createSession(secretKey: String?, user: T?) throws {
-      cachedSession = try sessionDataStore.createSession(accessToken: secretKey, user: user)
+      cachedSession = try sessionDataStore.createSession(secretKey: secretKey, user: user)
    }
    
    /// Update session on your app
@@ -89,7 +89,7 @@ open class SessionManager<T: MUser>: NSObject {
    ///     - secretKey: If return `nil` will user old value saved
    ///     - user: If return `nil` will user old value saved
    open func updateSession(secretKey: String?, user: T?) throws {
-      cachedSession = try sessionDataStore.updateSession(accessToken: secretKey, user: user)
+      cachedSession = try sessionDataStore.updateSession(secretKey: secretKey, user: user)
    }
    
    /// Delete session and set state to expired

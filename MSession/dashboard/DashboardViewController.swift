@@ -20,6 +20,15 @@ class DashboardViewController: BaseViewController {
       navigationItem.leftBarButtonItem = logoutBarButton
    }
    
+   override func viewDidAppear(_ animated: Bool) {
+      super.viewDidAppear(animated)
+            
+      print(AppSessionManager.shared.secretKey ?? "")
+      print(AppSessionManager.shared.user?.id ?? 0)
+      print(AppSessionManager.shared.user?.name ?? "")
+      print(AppSessionManager.shared.user?.email ?? "")
+   }
+   
    @objc func logoutDidTap() {
       AppSessionManager.shared.logout()
    }
