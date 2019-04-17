@@ -9,44 +9,60 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow?
-
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
-        let window = UIWindow()
-        let mainNavigation = BaseNavigationController(rootViewController: ViewController())
-        window.rootViewController = mainNavigation
-        self.window = window
-        self.window?.makeKeyAndVisible()
-        
-        return true
-    }
-
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
-
+   
+   var window: UIWindow?
+   
+   private var dashboardVC: UIViewController {
+      return BaseNavigationController(rootViewController: DashboardViewController())
+   }
+   
+   private var loginVC: UIViewController {
+      return BaseNavigationController(rootViewController: LoginViewController(nibName: "LoginViewController", bundle: nil))
+   }
+   
+   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+      
+      let window = UIWindow()
+      let rootVC: UIViewController
+      
+      AppSessionManager.shared.verifyExpireDate()
+      
+      if let _ = AppSessionManager.shared.session {
+         rootVC = dashboardVC
+      } else {
+         rootVC = loginVC
+      }
+      
+      window.rootViewController = rootVC
+      self.window = window
+      self.window?.makeKeyAndVisible()
+      
+      observeSessionState()
+      
+      return true
+   }
+   
+   func applicationWillEnterForeground(_ application: UIApplication) {
+      AppSessionManager.shared.verifyExpireDate()
+   }
+   
+   func observeSessionState() {
+      AppSessionManager.shared.appendedStateBlock(key: "session_state") {[weak self] (state) in
+         guard let self = self else { return }
+         switch state {
+         case .runnig:
+            self.replaceRootViewControllerTo(viewController: self.dashboardVC)
+         default:
+            self.replaceRootViewControllerTo(viewController: self.loginVC)
+         }
+      }
+   }
+   
+   func replaceRootViewControllerTo(viewController: UIViewController) {
+      guard let window = window else { return }
+      UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+         window.rootViewController = viewController
+      })
+   }
 }
 
