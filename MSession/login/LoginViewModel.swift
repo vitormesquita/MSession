@@ -50,7 +50,7 @@ extension LoginViewModel {
    }
    
    private func handleAuthAutomatically() {
-      guard #available(iOS 11.0, *), AppAuthManager.shared.automaticallyBiometryAuth else {
+      guard AppAuthManager.shared.automaticallyBiometryAuth else {
          formVisible = true
          return
       }
@@ -59,7 +59,6 @@ extension LoginViewModel {
       formVisible = false
    }
    
-   @available(iOS 11.0, *)
    private func authenticate() {
       AppAuthManager.shared.getSavedAccountsWithBiometric(reason: "An reason that I don't know") {[weak self] (accounts, error) in
          guard let self = self else { return }
@@ -69,7 +68,6 @@ extension LoginViewModel {
             //handler with error
          }
          
-         print(accounts)
          if let firstAccount = accounts.last {
             self.loginWith(email: firstAccount.account, password: firstAccount.password)
          }

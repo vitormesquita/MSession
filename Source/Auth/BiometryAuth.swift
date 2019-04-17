@@ -13,17 +13,19 @@ protocol BiometryAuthProtocol {
    func authenticateUser(reason: String, completion: @escaping (BiometryError?) -> Void)
 }
 
-@available(iOS 11.0, *)
 class BiometryAuth: BiometryAuthProtocol {
    
    private let context = LAContext()
    
    func canEvaluatePolicy() -> Bool {
+      guard #available(iOS 11.0, *) else { return false }
       return context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
    }
    
    func biometryType() -> BiometryType {
       let _ = canEvaluatePolicy()
+      
+      guard #available(iOS 11.0, *) else { return .none }
       
       switch context.biometryType {
       case .none:
@@ -42,6 +44,8 @@ class BiometryAuth: BiometryAuthProtocol {
          completion(.notAvailable)
          return
       }
+      
+      guard #available(iOS 11.0, *) else { return }
       
       context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { (success, evaluateError) in
          DispatchQueue.main.async {

@@ -9,18 +9,15 @@ import UIKit
 
 open class AuthManager: NSObject {
    
-   private var serviceName: String
-   private var accessGroup: String?
-   private var biometryAuth: BiometryAuthProtocol?
+   private let serviceName: String
+   private let accessGroup: String?
+   private let biometryAuth: BiometryAuthProtocol
    
    public init(serviceName: String, accessGroup: String? = nil) {
       self.serviceName = serviceName
       self.accessGroup = accessGroup
+      self.biometryAuth = BiometryAuth()
       super.init()
-      
-      if #available(iOS 11.0, *) {
-         self.biometryAuth = BiometryAuth()
-      }
    }
    
    /// Get all saved kaychain passwords and transform in `MAccount`
@@ -60,7 +57,7 @@ extension AuthManager {
    
    /// Return biometry type the device has Face ID or Touch ID
    public var biometryType: BiometryType {
-      return biometryAuth?.biometryType() ?? .none
+      return biometryAuth.biometryType()
    }
    
    /// Inform if your application can use biometry authentication automatically
@@ -71,23 +68,21 @@ extension AuthManager {
    }
    
    /// Return a flag if biometric is available
-   @available(iOS 11.0, *)
    open func biometryIsAvailable() -> Bool {
-      return (biometryAuth?.canEvaluatePolicy() ?? false)
+      return biometryAuth.canEvaluatePolicy()
    }
    
    /// Call Face/Touch ID
    /// - Parameters:
    ///   - reason: Tell a reason why you want use Face/Touch ID authentication
    ///   - completion: Closure to handle if was authenticated or had an error
-   @available(iOS 11.0, *)
    open func biometryAuthentication(reason: String, completion: @escaping ((BiometryError?) -> Void)) {
       guard biometryIsAvailable() else {
          completion(BiometryError.notAvailable)
          return
       }
       
-      biometryAuth?.authenticateUser(reason: reason, completion: completion)
+      biometryAuth.authenticateUser(reason: reason, completion: completion)
    }
 }
 
@@ -133,7 +128,6 @@ extension AuthManager {
    /// - Parameters:
    ///   - reason: Tell a reason why you want use Face/Touch ID authentication
    ///   - completion: Closure to return an Array of `MAccount` or an error
-   @available(iOS 11.0, *)
    open func getSavedAccountsWithBiometric(reason: String, completion: @escaping (([MAccount], Error?) -> Void)) {
       biometryAuthentication(reason: reason) { (error) in
          guard error == nil else {
