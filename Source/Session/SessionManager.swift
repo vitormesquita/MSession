@@ -20,15 +20,15 @@ open class SessionManager<T: AnyObject>: NSObject {
       }
    }
    
-   private var state: SessionState {
+   // MARK: - Public
+   
+   public var state: SessionState {
       didSet {
          if state != oldValue {
             delegate?.sessionStateDidChange(state)
          }
       }
    }
-   
-   // MARK: - Public
    
    public weak var delegate: SessionManagerDelegate?
    

@@ -105,5 +105,5 @@ class AppSessionManager: SessionManager<User> {
 }
 ```
 
-**OBS: If you are using defaul DataStore (SessionDataStore) you MUST make your `User` extends `NSObject & NSCoding`**
+**OBS: If you are using default DataStore (SessionDataStore) you MUST make your `User` extends `NSObject & NSCoding`**
 
