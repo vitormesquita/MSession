@@ -14,7 +14,7 @@ public typealias MSession = (secretKey: String, user: AnyObject)
 public enum SessionState: Equatable {
    case none
    case expired
-   case runnig
+   case running
 }
 
 public enum SessionDataStoreError: Error {

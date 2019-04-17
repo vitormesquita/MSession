@@ -19,7 +19,7 @@ class SessionDataStore: SessionDataStoreProtocol {
    func getSession<T: AnyObject>(type: T.Type) -> MSession? {
       guard let secretKey = KeyedArchiverManager.retrieveStringWith(key: MSessionKeys.secretKey.rawValue),
          let user = KeyedArchiverManager.retrieveObjectWith(key: MSessionKeys.user.rawValue, type: type) else {
-         return nil
+            return nil
       }
       
       return MSession(secretKey, user)

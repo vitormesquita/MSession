@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       AppSessionManager.shared.appendedStateBlock(key: "session_state") {[weak self] (state) in
          guard let self = self else { return }
          switch state {
-         case .runnig:
+         case .running:
             self.replaceRootViewControllerTo(viewController: self.dashboardVC)
          default:
             self.replaceRootViewControllerTo(viewController: self.loginVC)

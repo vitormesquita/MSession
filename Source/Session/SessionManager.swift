@@ -15,7 +15,7 @@ open class SessionManager<T: AnyObject>: NSObject {
    private var cachedSession: MSession? {
       didSet {
          if cachedSession != nil {
-            state = .runnig
+            state = .running
          }
       }
    }
@@ -36,7 +36,7 @@ open class SessionManager<T: AnyObject>: NSObject {
       self.sessionDataStore = dataStore
       
       if (sessionDataStore.getSession(type: T.self)) != nil {
-         self.state = .runnig
+         self.state = .running
       } else {
          self.state = .none
       }
@@ -48,7 +48,7 @@ open class SessionManager<T: AnyObject>: NSObject {
       self.sessionDataStore = SessionDataStore()
       
       if (sessionDataStore.getSession(type: T.self)) != nil {
-         self.state = .runnig
+         self.state = .running
       } else {
          self.state = .none
       }
@@ -88,7 +88,7 @@ open class SessionManager<T: AnyObject>: NSObject {
    /// - Parameters:
    ///     - secretKey: If return `nil` will user old value saved
    ///     - user: If return `nil` will user old value saved
-   open func updateSession(secretKey: String?, user: T?) throws {
+   open func updateSession(secretKey: String? = nil, user: T? = nil) throws {
       cachedSession = try sessionDataStore.updateSession(secretKey: secretKey, user: user)
    }
    

@@ -9,17 +9,19 @@ import UIKit
 
 class AppSessionManager: SessionManager<User> {
    
-   static let shared = AppSessionManager()
+   static let shared = AppSessionManager(expireTime: 300)
    
+   private let expireTime: TimeInterval
    private var statesBlock: [String: ((SessionState) -> Void)] = [:]
    
-   override init() {
+   init(expireTime: TimeInterval) {
+      self.expireTime = expireTime
       super.init()
       delegate = self
    }
    
    override func createSession(secretKey: String?, user: User?) throws {
-      UserDefaults.standard.set(Date().addingTimeInterval(300), forKey: "expire_date")
+      UserDefaults.standard.set(Date().addingTimeInterval(expireTime), forKey: "expire_date")
       try super.createSession(secretKey: secretKey, user: user)
    }
    
