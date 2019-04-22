@@ -9,25 +9,22 @@ import UIKit
 
 protocol LoginViewModelProtocol {
    
-   var biometryEnable: Bool { get }
    var biometryText: String? { get }
    var automaticallySigninIsEnable: Bool { get }
+   var fieldsVisibility: ((Bool) -> Void)? { get set }
    
-   var formVisibility: ((Bool) -> Void)? { get set }
-   
-   func viewDidLoad()
+   func verifyAutoAuth()
    func signIn(email: String?, password: String?, biometry: Bool)
 }
 
 class LoginViewModel {
    
-   var loggedIn: (() -> Void)?
-   var formVisibility: ((Bool) -> Void)?
+   var fieldsVisibility: ((Bool) -> Void)?
    
-   private var formVisible: Bool = false {
+   private var isFieldsVisible: Bool = false {
       didSet {
-         guard let formVisibility = formVisibility else { return }
-         formVisibility(formVisible)
+         guard let formVisibility = fieldsVisibility else { return }
+         formVisibility(isFieldsVisible)
       }
    }
 }
@@ -45,24 +42,14 @@ extension LoginViewModel {
          }
          
       } else {
-         formVisible = true
+         isFieldsVisible = true
       }
-   }
-   
-   private func handleAuthAutomatically() {
-      guard AppAuthManager.shared.automaticallyBiometryAuth else {
-         formVisible = true
-         return
-      }
-      
-      authenticate()
-      formVisible = false
    }
    
    private func authenticate() {
       AppAuthManager.shared.getSavedAccountsWithBiometric(reason: "An reason that I don't know") {[weak self] (accounts, error) in
          guard let self = self else { return }
-         self.formVisible = accounts.isEmpty || error != nil
+         self.isFieldsVisible = accounts.isEmpty || error != nil
          
          if error != nil {
             //handler with error
@@ -76,10 +63,6 @@ extension LoginViewModel {
 }
 
 extension LoginViewModel: LoginViewModelProtocol {
-   
-   var biometryEnable: Bool {
-      return AppAuthManager.shared.biometryIsEnable
-   }
    
    var biometryText: String? {
       let type = AppAuthManager.shared.biometryType
@@ -98,8 +81,13 @@ extension LoginViewModel: LoginViewModelProtocol {
       return AppAuthManager.shared.automaticallyBiometryAuth
    }
    
-   func viewDidLoad() {
-      handleAuthAutomatically()
+   func verifyAutoAuth() {
+      guard AppAuthManager.shared.automaticallyBiometryAuth else {
+         isFieldsVisible = true
+         return
+      }
+      
+      authenticate()
    }
    
    func signIn(email: String?, password: String?, biometry: Bool) {
