@@ -6,7 +6,6 @@
 //
 
 import XCTest
-
 @testable import MSession
 
 class SessionManagerTests: XCTestCase {

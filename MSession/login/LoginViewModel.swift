@@ -32,17 +32,17 @@ class LoginViewModel {
 extension LoginViewModel {
    
    private func loginWith(email: String, password: String) {
-      if email == "mano@gmail.com" && password == "12345" {
-         AppAuthManager.shared.saveAccount(account: email, password: password, deleteOthers: true)
-         
-         do {
-            try AppSessionManager.shared.createSession(secretKey: "token", user: User(id: 0, name: "Mano", email: "mano@gmail.com"))
-         } catch {
-            //handler with error
-         }
-         
-      } else {
+      guard email == "mano@gmail.com" && password == "12345" else {
+         // call a api service to restore user
          isFieldsVisible = true
+         return
+      }
+      
+      do {
+         try AppSessionManager.shared.createSession(secretKey: "token", user: User(id: 0, name: "Mano", email: "mano@gmail.com"))
+         try AppAuthManager.shared.saveAccount(account: email, password: password, deleteOthers: true)
+      } catch {
+         //handler with error
       }
    }
    

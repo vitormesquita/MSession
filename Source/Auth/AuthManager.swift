@@ -5,9 +5,14 @@
 //  Created by Vitor Mesquita on 09/04/19.
 //
 
-import UIKit
+import Foundation
 
 open class AuthManager: NSObject {
+   
+   public enum Error: Swift.Error {
+      case blankInformations
+      case notFoundAccount
+   }
    
    private let serviceName: String
    private let accessGroup: String?
@@ -20,21 +25,9 @@ open class AuthManager: NSObject {
       super.init()
    }
    
-   /// Get all saved kaychain passwords and transform in `MAccount`
-   private func getSavedAccounts() throws -> [MAccount] {
-      let passwordItems = try KeychainPasswordItem.passwordItems(forService: self.serviceName, accessGroup: self.accessGroup)
-      var accounts = [MAccount]()
-      
-      for item in passwordItems {
-         do {
-            let password = try item.readPassword()
-            accounts.append((account: item.account, password: password))
-         } catch {
-            continue
-         }
-      }
-      
-      return accounts
+   private func getKeychainItemBy(account: String) -> KeychainPasswordItem? {
+      let passwordItems = try? KeychainPasswordItem.passwordItems(forService: self.serviceName, accessGroup: self.accessGroup)
+      return passwordItems?.first(where: { $0.account == account })
    }
    
    /// Delete all saved accounts excluding accounts passing as parameters
@@ -89,15 +82,21 @@ extension AuthManager {
 // MARK: - Keychain handler
 extension AuthManager {
    
-   /// Get all saved keychain passwords
-   /// - parameter completion: Closure to return an Array of `MAccount` or an error
-   open func getSavedAccounts(completion: @escaping (([MAccount], Error?) -> Void)) {
-      do {
-         let items = try getSavedAccounts()
-         completion(items, nil)
-      } catch(let error) {
-         completion([], error)
+   /// Get all saved keychain passwords and transform in `MAccount`
+   open func getSavedAccounts() throws -> [MAccount] {
+      let passwordItems = try KeychainPasswordItem.passwordItems(forService: self.serviceName, accessGroup: self.accessGroup)
+      var accounts = [MAccount]()
+      
+      for item in passwordItems {
+         do {
+            let password = try item.readPassword()
+            accounts.append((account: item.account, password: password))
+         } catch {
+            continue
+         }
       }
+      
+      return accounts
    }
    
    /// Saved a account, KeychainPasswordItem trys to update a saved account or create new one
@@ -105,37 +104,57 @@ extension AuthManager {
    ///   - account: An account like email, username or something like that
    ///   - password: Password to be saved
    ///   - deleteOthers: Flag to delete the others passwords
-   ///   - completion: Closure to handle if it returns an error and cannot saved this Account
-   open func saveAccount(account: String, password: String, deleteOthers: Bool = false, completion: ((Error?) -> Void)? = nil) {
-      var completionError: Error?
-      do {
-         let keychain = KeychainPasswordItem(service: self.serviceName, account: account, accessGroup: self.accessGroup)
-         try keychain.savePassword(password)
-         
-         if deleteOthers {
-            self.deleteSavedAccountsExclude(accounts: [account])
-         }
-         
-      } catch(let error) {
-         completionError = error
+   open func saveAccount(account: String, password: String, deleteOthers: Bool = false) throws {
+      guard !account.isEmpty && !password.isEmpty else {
+         throw AuthManager.Error.blankInformations
       }
       
-      guard let completion = completion else { return }
-      completion(completionError)
+      let keychain = KeychainPasswordItem(service: self.serviceName, account: account, accessGroup: self.accessGroup)
+      try keychain.savePassword(password)
+      
+      if deleteOthers {
+         self.deleteSavedAccountsExclude(accounts: [account])
+      }
    }
    
-   /// Get all saved kaychain passwords with biometric authentication
+   /// Rename a saved account, if there aren't any account will send a throw
+   /// - Parameters:
+   ///   - account: A old account to find on Keychain
+   ///   - newAccount: New account to be saved and keep the old password
+   open func renameAccount(_ account: String, newAccount: String) throws {
+      guard !newAccount.isEmpty else {
+         throw AuthManager.Error.blankInformations
+      }
+      
+      guard var keychainItem = getKeychainItemBy(account: account) else {
+         throw AuthManager.Error.notFoundAccount
+      }
+      
+      try keychainItem.renameAccount(newAccount)
+   }
+   
+   /// Delete all accounts saved on keychain
+   open func deleteAllAccounts() {
+      deleteSavedAccountsExclude(accounts: [])
+   }
+   
+   /// Get all saved keychain passwords with biometric authentication
    /// - Parameters:
    ///   - reason: Tell a reason why you want use Face/Touch ID authentication
    ///   - completion: Closure to return an Array of `MAccount` or an error
-   open func getSavedAccountsWithBiometric(reason: String, completion: @escaping (([MAccount], Error?) -> Void)) {
+   open func getSavedAccountsWithBiometric(reason: String, completion: @escaping (([MAccount], Swift.Error?) -> Void)) {
       biometryAuthentication(reason: reason) { (error) in
          guard error == nil else {
             completion([], error)
             return
          }
          
-         self.getSavedAccounts(completion: completion)
+         do {
+          let items = try self.getSavedAccounts()
+            completion(items, nil)
+         } catch(let error) {
+            completion([], error)
+         }
       }
    }
 }
