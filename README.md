@@ -49,11 +49,11 @@ If you don't use any dependency managers, you can integrate MSession in your pro
 
 ## Session
 
-Session module contains all classes to manage an app session and all this module runs around the `SessionManager<T: AnyObject>` class. This class is in charge to deal with ***create, update, expire and logout*** app session.
+Session module contains all classes to manage an app session. 
 
-SessionManager by default needs a `AnyObject` to save on session. This object will be your "user" or "client" into application.
+All this module runs around the `SessionManager<T: AnyObject>` class. This class is in charge to deal with ***create, update, expire and logout*** app session. By default SessionManager needs a `AnyObject` to save on session. This object will be your "user" or "client" into application.
 
-So basically to use this module you need to have a instance of this class ***(normally is a shared instance)***.
+So basically to use this module you need to have a instance of this class or create your own extending `SessionManager`.
 
 **Create a shared instante:**
 
@@ -107,3 +107,8 @@ class AppSessionManager: SessionManager<User> {
 
 **OBS: If you are using default DataStore (SessionDataStore) you MUST do your `User` extends `NSObject & NSCoding`**
 
+## Auth
+
+Auth module contains all classes to manage authentication using `Biometry (FaceID)` and `Keychain` security.
+
+All this module runs around the `AuthManager` class. This class contains all methods you will need to ensure a secury authentication in your app.
