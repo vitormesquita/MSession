@@ -16,7 +16,7 @@ class AppSessionManager: SessionManager<User> {
    
    init(expireTime: TimeInterval) {
       self.expireTime = expireTime
-      super.init()
+      super.init(service: "AppServiceName")
       delegate = self
    }
    

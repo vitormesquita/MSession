@@ -27,13 +27,6 @@ public enum BiometryError: Error {
    case notConfigured
 }
 
-public enum KeychainError: Error {
-   case noPassword
-   case unexpectedPasswordData
-   case unexpectedItemData
-   case unhandledError(status: OSStatus)
-}
-
 enum MAuthKeys: String {
    case biometric = "m_session_biometric_enable"
 }

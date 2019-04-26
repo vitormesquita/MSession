@@ -109,6 +109,17 @@ class AppSessionManager: SessionManager<User> {
 
 ## Auth
 
-Auth module contains all classes to manage authentication using `Biometry (FaceID)` and `Keychain` security.
+Auth module contains all classes to manage authentication using `Biometry (FaceID)` and `Keychain` security.All this module runs around the `AuthManager` class. This class contains all methods you will need to ensure a secury authentication in your app. 
 
-All this module runs around the `AuthManager` class. This class contains all methods you will need to ensure a secury authentication in your app.
+To create a `AuthManager` instance you will need to provide a `serviceName` and optionally a `occupationGroup`
+
+- `serviceName`:
+
+As Session module you need to have a instance of `AuthManager` class or create your own.
+
+**Create a shared instance:**
+
+```swift
+static let shared = 
+
+```

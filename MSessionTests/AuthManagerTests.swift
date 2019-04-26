@@ -10,7 +10,7 @@ import XCTest
 
 class AuthManagerTests: XCTestCase {
    
-   let authManager = AuthManager(serviceName: "test_service_group")
+   let authManager = AuthManager(service: "AuthTestService")
    
    override func setUp() {
       authManager.deleteAllAccounts()

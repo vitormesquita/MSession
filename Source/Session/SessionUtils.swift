@@ -17,11 +17,6 @@ public enum SessionState: Equatable {
    case running
 }
 
-public enum SessionDataStoreError: Error {
-   case noSessionToUpdate
-   case errorToCreateSession
-}
-
 // MARK: - Protocols
 
 public protocol SessionDataStoreProtocol {

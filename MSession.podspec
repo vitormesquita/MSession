@@ -9,17 +9,19 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '10.0'
 
-  s.default_subspec = "All"
+  s.default_subspecs = "Core", "Session", "Auth"
 
-  s.subspec "All" do |ss|
-    ss.source_files = "Source/**/*"
+  s.subspec "Core" do |ss|
+    ss.source_files = "Source/Keychain/*"
   end
 
   s.subspec "Session" do |ss|
-    ss.source_files  = "Source/Session/*"
+    ss.dependency "MSession/Core"
+    ss.source_files = "Source/Session/*"
   end
 
   s.subspec "Auth" do |ss|
-    ss.source_files  = "Source/Auth/*"
+    ss.dependency "MSession/Core"
+    ss.source_files = "Source/Auth/*"
   end
 end

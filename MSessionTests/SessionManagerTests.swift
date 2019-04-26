@@ -10,7 +10,7 @@ import XCTest
 
 class SessionManagerTests: XCTestCase {
    
-   private let manager = SessionManager<User>()
+   private let manager = SessionManager<User>(service: "SessionTestService")
    private let user = User(id: 0, name: "test", email: "user@test.com")
    
    override func setUp() {
@@ -45,7 +45,6 @@ class SessionManagerTests: XCTestCase {
    
    func testUpdateUserSession() {
       try? manager.createSession(secretKey: "secret_key", user: user)
-      
       try? manager.updateSession(user: User(id: 1, name: "test1", email: "user1@test.com"))
       
       XCTAssertNotNil(manager.session)

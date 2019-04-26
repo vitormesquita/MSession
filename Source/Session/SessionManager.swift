@@ -44,8 +44,8 @@ open class SessionManager<T: AnyObject>: NSObject {
       super.init()
    }
    
-   public override init() {
-      self.sessionDataStore = SessionDataStore()
+   public init(service: String) {
+      self.sessionDataStore = SessionDataStore(service: service)
       
       if (sessionDataStore.getSession(type: T.self)) != nil {
          self.state = .running

@@ -9,7 +9,7 @@ import UIKit
 
 class AppAuthManager: AuthManager {
    
-   static let shared = AppAuthManager(serviceName: "AppServiceName")
+   static let shared = AppAuthManager(service: "AppServiceName")
    
    var biometryIsEnable: Bool {
       guard #available(iOS 11.0, *) else { return false }

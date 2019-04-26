@@ -14,26 +14,19 @@ open class AuthManager: NSObject {
       case notFoundAccount
    }
    
-   private let serviceName: String
-   private let accessGroup: String?
+   private let keychain: Keychain
    private let biometryAuth: BiometryAuthProtocol
    
-   public init(serviceName: String, accessGroup: String? = nil) {
-      self.serviceName = serviceName
-      self.accessGroup = accessGroup
+   public init(service: String, accessGroup: String? = nil) {
       self.biometryAuth = BiometryAuth()
+      self.keychain = Keychain(service: service, accessGroup: accessGroup)
       super.init()
-   }
-   
-   private func getKeychainItemBy(account: String) -> KeychainPasswordItem? {
-      let passwordItems = try? KeychainPasswordItem.passwordItems(forService: self.serviceName, accessGroup: self.accessGroup)
-      return passwordItems?.first(where: { $0.account == account })
    }
    
    /// Delete all saved accounts excluding accounts passing as parameters
    private func deleteSavedAccountsExclude(accounts: [String]) {
       do {
-         let passwordItems = try KeychainPasswordItem.passwordItems(forService: self.serviceName, accessGroup: self.accessGroup)
+         let passwordItems = try keychain.items()
          
          for item in passwordItems {
             guard !accounts.contains(item.account) else { continue }
@@ -84,12 +77,12 @@ extension AuthManager {
    
    /// Get all saved keychain passwords and transform in `MAccount`
    open func getSavedAccounts() throws -> [MAccount] {
-      let passwordItems = try KeychainPasswordItem.passwordItems(forService: self.serviceName, accessGroup: self.accessGroup)
+      let passwordItems = try keychain.items()
       var accounts = [MAccount]()
       
       for item in passwordItems {
          do {
-            let password = try item.readPassword()
+            let password = try item.getString()
             accounts.append((account: item.account, password: password))
          } catch {
             continue
@@ -109,8 +102,8 @@ extension AuthManager {
          throw AuthManager.Error.blankInformations
       }
       
-      let keychain = KeychainPasswordItem(service: self.serviceName, account: account, accessGroup: self.accessGroup)
-      try keychain.savePassword(password)
+      let keychainItem = keychain.getOrCreateItemBy(account: account)
+      try keychainItem.set(string: password)
       
       if deleteOthers {
          self.deleteSavedAccountsExclude(accounts: [account])
@@ -126,7 +119,7 @@ extension AuthManager {
          throw AuthManager.Error.blankInformations
       }
       
-      guard var keychainItem = getKeychainItemBy(account: account) else {
+      guard var keychainItem = keychain.getItemBy(account: account) else {
          throw AuthManager.Error.notFoundAccount
       }
       
