@@ -4,7 +4,7 @@
 
 ### It is a simple and easy solution to build a security and modular app with latest apple biometry authentication.
 
-MSessions uses `Keychain` to authenticate users and `NSKeyedArchiver` to save user's session. It's really flexible, easy and scalable use into your app.
+MSessions uses `Keychain` to authenticate users and save session (Secret Key, User). It's really flexible, easy and scalable use into your app.
 
 ## Requirements
 
@@ -58,7 +58,7 @@ So basically to use this module you need to have a instance of this class or cre
 **Create a shared instante:**
 
 ```swift
-static let shared = SessionManager<User>()
+static let shared = SessionManager<User>(service: "MyAppService")
 ```
 
 
@@ -71,7 +71,7 @@ import MSession
 
 class AppSessionManager: SessionManager<User> {
 
- static let shared = AppSessionManager()
+ static let shared = AppSessionManager(service: "MyAppService")
  ...
  
 }
@@ -79,8 +79,9 @@ class AppSessionManager: SessionManager<User> {
 
 *Create your own class is the most appropriate*
 
+To create a `SessionManager` instance you will need to provide a `service`, it is a identifier to save and restore your app session
 
-`SessionManager` by default has a `DataStore` implementation called `SessionDataStore`, this implementation is using `NSKeyedArchiver` and `UserDefaults` to save sassion. 
+`SessionManager` by default has a `DataStore` implementation called `SessionDataStore`, this implementation is using `NSKeyedArchiver` and `Keychain` to save session. 
 
 If you want create a local store with realm or core data you can use MSession as well. You just need to create your own DataStore and implement `SessionDataStore` protocol.
 
@@ -88,7 +89,7 @@ If you want create a local store with realm or core data you can use MSession as
 import MSession
 
 class AppSessionDataStore: SessionDataStoreProtocol {
- // implemet all methods
+   // implemet all methods
 }
 ```
 
@@ -99,8 +100,8 @@ import MSession
 
 class AppSessionManager: SessionManager<User> {
 
- static let shared = AppSessionManager(dataStore: AppSessionDataStore())
- ...
+   static let shared = AppSessionManager(dataStore: AppSessionDataStore())
+   ...
  
 }
 ```
@@ -111,15 +112,78 @@ class AppSessionManager: SessionManager<User> {
 
 Auth module contains all classes to manage authentication using `Biometry (FaceID)` and `Keychain` security.All this module runs around the `AuthManager` class. This class contains all methods you will need to ensure a secury authentication in your app. 
 
-To create a `AuthManager` instance you will need to provide a `serviceName` and optionally a `occupationGroup`
-
-- `serviceName`:
-
 As Session module you need to have a instance of `AuthManager` class or create your own.
 
 **Create a shared instance:**
 
 ```swift
-static let shared = 
+static let shared = AuthManager(service: "MyAppService")
 
 ```
+
+**Create your own class:**
+
+```swift
+import MSession
+
+class AppAuthManager: AuthManager {
+   
+   static let shared = AppAuthManager(service: "MyAppService")
+   ...
+}
+```
+
+To create a `AuthManager` instance you will need to provide a `service` and optionally a `occupationGroup`
+
+- `service`: Identifier to save and restore saved accounts and passwords.
+- `occupationGroup`: An access group will create items accross apps.
+	
+Not specifying an `occupationGroup`(access group) will create items specific to each app.
+
+On AuthManager you can separete in two sections:
+
+- Save accounts and passwords (Keychain)
+- Use biometry authentication (Face/Touch ID)
+
+### Save accounts and passwords 
+
+AuthManager provides some functions to interact with Keychain and to secure users accounts and passwords. These functions are:
+
+```swift
+open func deleteAllAccounts()
+open func getSavedAccounts() throws -> [MAccount]
+open func renameAccount(_ account: String, newAccount: String) throws
+open func saveAccount(account: String, password: String, deleteOthers: Bool = false) throws
+```
+
+`MAccount` is a typealias to a tuple that return `account: String` and `password: String`
+
+### Biometry authentication
+
+AuthManager provides some functions to interact with Biometry authentication using `LAContext`. These functions are:
+
+```swift
+public var biometryType: BiometryType
+public var automaticallyBiometryAuth: Bool
+
+open func biometryIsAvailable() -> Bool
+open func biometryAuthentication(reason: String, completion: @escaping ((BiometryError?) -> Void))
+```
+
+`LAContext` is just available to iOS 11 or later, but you don't need to check any function to called. MSession handle it to you, but of course some functions will return an error if you try use it on iOS 10.
+
+## Contributing
+	
+If you think that we can do the MSession more powerful please contribute with this project. And let's improve it to help other developers.
+
+Create a pull request or let's talk about something in issues. Thanks a lot.
+
+## Author
+
+Vitor Mesquita, vitor.mesquita09@gmail.com
+
+## License
+
+MSession is available under the MIT license. See the LICENSE file for more info.
+
+
