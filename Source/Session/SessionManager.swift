@@ -7,20 +7,22 @@
 
 import Foundation
 
-open class SessionManager<T: MUser>: NSObject {
+open class SessionManager<T: AnyObject>: NSObject {
    
    // MARK: private
    private let sessionDataStore: SessionDataStoreProtocol
    
-   private var cachedSession: Session? {
+   private var cachedSession: MSession? {
       didSet {
-         if let cachedSession = cachedSession {
-            state = .runnig(cachedSession)
+         if cachedSession != nil {
+            state = .running
          }
       }
    }
    
-   private var state: SessionState {
+   // MARK: - Public
+   
+   public var state: SessionState {
       didSet {
          if state != oldValue {
             delegate?.sessionStateDidChange(state)
@@ -28,14 +30,13 @@ open class SessionManager<T: MUser>: NSObject {
       }
    }
    
-   // MARK: public
    public weak var delegate: SessionManagerDelegate?
    
-   public init(sessionDataStore: SessionDataStoreProtocol) {
-      self.sessionDataStore = sessionDataStore
+   public init(dataStore: SessionDataStoreProtocol) {
+      self.sessionDataStore = dataStore
       
-      if let session = sessionDataStore.getSession() {
-         self.state = .runnig(session)
+      if (sessionDataStore.getSession(type: T.self)) != nil {
+         self.state = .running
       } else {
          self.state = .none
       }
@@ -43,25 +44,17 @@ open class SessionManager<T: MUser>: NSObject {
       super.init()
    }
    
-   public override init() {
-      self.sessionDataStore = SessionDataStore()
+   public init(service: String) {
+      self.sessionDataStore = SessionDataStore(service: service)
       
-      if let session = sessionDataStore.getSession() {
-         self.state = .runnig(session)
+      if (sessionDataStore.getSession(type: T.self)) != nil {
+         self.state = .running
       } else {
          self.state = .none
       }
       
       super.init()
    }
-   
-   private func deleteSession() {
-      sessionDataStore.deleteSession()
-      cachedSession = nil
-   }
-}
-
-extension SessionManager {
    
    /// Return user in session if it's running
    public var user: T? {
@@ -70,13 +63,13 @@ extension SessionManager {
    
    /// Return the secret key to auth user
    public var secretKey: String? {
-      return session?.accessToken
+      return session?.secretKey
    }
    
    /// Return session cached if has or get saved session and put in cache
-   public var session: Session? {
+   public var session: MSession? {
       guard let cachedSession = cachedSession else {
-         self.cachedSession = sessionDataStore.getSession()
+         self.cachedSession = sessionDataStore.getSession(type: T.self)
          return self.cachedSession
       }
       
@@ -87,27 +80,34 @@ extension SessionManager {
    /// - Parameters:
    ///     - secretKey: Secret Key returned through webservice after authentication (token or hashs) to validate requests on webservice
    ///     - user: User returned through webservice after authentication that session needs to be created
-   public func createSession(secretKey: String?, user: T?) throws {
-      cachedSession = try? sessionDataStore.createSession(accessToken: secretKey, user: user)
+   open func createSession(secretKey: String?, user: T?) throws {
+      cachedSession = try sessionDataStore.createSession(secretKey: secretKey, user: user)
    }
    
    /// Update session on your app
    /// - Parameters:
    ///     - secretKey: If return `nil` will user old value saved
    ///     - user: If return `nil` will user old value saved
-   public func updateSession(secretKey: String?, user: T?) throws {
-      cachedSession = try? sessionDataStore.updateSession(accessToken: secretKey, user: user)
+   open func updateSession(secretKey: String? = nil, user: T? = nil) throws {
+      cachedSession = try sessionDataStore.updateSession(secretKey: secretKey, user: user)
    }
    
-   /// Delete session and put the sessionState as expired
-   public func expireSession() {
+   /// Delete session and set state to expired
+   open func expireSession() {
       deleteSession()
       state = .expired
    }
    
-   /// Delete session and put the state as none
-   public func logout() {
+   /// Delete session and set state to none
+   open func logout() {
       deleteSession()
       state = .none
+   }
+   
+   // MARK: - Private
+   
+   private func deleteSession() {
+      sessionDataStore.deleteSession()
+      cachedSession = nil
    }
 }

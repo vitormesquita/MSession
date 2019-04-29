@@ -7,20 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC245256225E2B3D000CDD21 /* AuthUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC245255225E2B3D000CDD21 /* AuthUtils.swift */; };
+		FC245258225E3D57000CDD21 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC245257225E3D57000CDD21 /* LoginViewModel.swift */; };
+		FC24525B225E6EEA000CDD21 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC24525A225E6EEA000CDD21 /* Colors.swift */; };
+		FC24525D225E7091000CDD21 /* AppAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC24525C225E7091000CDD21 /* AppAuthManager.swift */; };
+		FC24525F225E97BC000CDD21 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC24525E225E97BC000CDD21 /* Button.swift */; };
+		FC245262225E9D52000CDD21 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC245261225E9D52000CDD21 /* DashboardViewController.swift */; };
+		FC245264225F7915000CDD21 /* AppSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC245263225F7915000CDD21 /* AppSessionManager.swift */; };
+		FC341A262254052B008FCB70 /* BiometryAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC341A252254052B008FCB70 /* BiometryAuth.swift */; };
+		FC4D68682273AD0E0099FF17 /* AuthAndSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4D68672273AD0E0099FF17 /* AuthAndSessionTests.swift */; };
 		FC4E3FD120EE958400B8F91D /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4E3FD020EE958400B8F91D /* SessionManager.swift */; };
+		FC5E5B73225BE7A4008A7C7C /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5E5B72225BE7A4008A7C7C /* KeychainItem.swift */; };
+		FC5E5B76225C0DA1008A7C7C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5E5B74225C0DA1008A7C7C /* LoginViewController.swift */; };
+		FC5E5B77225C0DA1008A7C7C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC5E5B75225C0DA1008A7C7C /* LoginViewController.xib */; };
+		FC5E5B79225D4AEF008A7C7C /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5E5B78225D4AEF008A7C7C /* AuthManager.swift */; };
 		FC70DB5020EC246400AEEA80 /* SessionDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC70DB4F20EC246400AEEA80 /* SessionDataStore.swift */; };
-		FC70DB5220EC28A000AEEA80 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC70DB5120EC28A000AEEA80 /* Session.swift */; };
+		FC71DCE92266B68E00C87A6A /* SessionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC71DCE82266B68E00C87A6A /* SessionManagerTests.swift */; };
 		FC99C85920EBECA9002F5D8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC99C85820EBECA9002F5D8E /* AppDelegate.swift */; };
-		FC99C85B20EBECA9002F5D8E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC99C85A20EBECA9002F5D8E /* ViewController.swift */; };
 		FC99C86020EBECAA002F5D8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC99C85F20EBECAA002F5D8E /* Assets.xcassets */; };
 		FC99C86320EBECAA002F5D8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC99C86120EBECAA002F5D8E /* LaunchScreen.storyboard */; };
-		FC99C86E20EBECAA002F5D8E /* MSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC99C86D20EBECAA002F5D8E /* MSessionTests.swift */; };
-		FCB2051A20FBE74C009EB2BC /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB2051920FBE74C009EB2BC /* Colors.swift */; };
+		FCA86553227344E30001125B /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA86552227344E30001125B /* Keychain.swift */; };
 		FCB2051C20FBE8DA009EB2BC /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB2051B20FBE8DA009EB2BC /* BaseNavigationController.swift */; };
-		FCB8295420FBDBB600ED8484 /* KeyedArchiverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB8295320FBDBB600ED8484 /* KeyedArchiverManager.swift */; };
-		FCB8295620FBDE5D00ED8484 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB8295520FBDE5D00ED8484 /* Utils.swift */; };
+		FCB8295620FBDE5D00ED8484 /* SessionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB8295520FBDE5D00ED8484 /* SessionUtils.swift */; };
 		FCB8295920FBDF1A00ED8484 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB8295820FBDF1A00ED8484 /* User.swift */; };
 		FCB8295E20FBE55300ED8484 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB8295D20FBE55300ED8484 /* BaseViewController.swift */; };
+		FCCCC6262270DDF20054661A /* AuthManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCCC6252270DDF20054661A /* AuthManagerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,24 +45,35 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC245255225E2B3D000CDD21 /* AuthUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUtils.swift; sourceTree = "<group>"; };
+		FC245257225E3D57000CDD21 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		FC24525A225E6EEA000CDD21 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		FC24525C225E7091000CDD21 /* AppAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAuthManager.swift; sourceTree = "<group>"; };
+		FC24525E225E97BC000CDD21 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		FC245261225E9D52000CDD21 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		FC245263225F7915000CDD21 /* AppSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSessionManager.swift; sourceTree = "<group>"; };
+		FC341A252254052B008FCB70 /* BiometryAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometryAuth.swift; sourceTree = "<group>"; };
+		FC4D68672273AD0E0099FF17 /* AuthAndSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAndSessionTests.swift; sourceTree = "<group>"; };
 		FC4E3FD020EE958400B8F91D /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		FC5E5B72225BE7A4008A7C7C /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
+		FC5E5B74225C0DA1008A7C7C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FC5E5B75225C0DA1008A7C7C /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		FC5E5B78225D4AEF008A7C7C /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		FC70DB4F20EC246400AEEA80 /* SessionDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDataStore.swift; sourceTree = "<group>"; };
-		FC70DB5120EC28A000AEEA80 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		FC71DCE82266B68E00C87A6A /* SessionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagerTests.swift; sourceTree = "<group>"; };
 		FC99C85520EBECA9002F5D8E /* MSession.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MSession.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC99C85820EBECA9002F5D8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FC99C85A20EBECA9002F5D8E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FC99C85F20EBECAA002F5D8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC99C86220EBECAA002F5D8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC99C86420EBECAA002F5D8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC99C86920EBECAA002F5D8E /* MSessionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MSessionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FC99C86D20EBECAA002F5D8E /* MSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSessionTests.swift; sourceTree = "<group>"; };
 		FC99C86F20EBECAA002F5D8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FCB2051920FBE74C009EB2BC /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		FCA86552227344E30001125B /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		FCB2051B20FBE8DA009EB2BC /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
-		FCB8295320FBDBB600ED8484 /* KeyedArchiverManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedArchiverManager.swift; sourceTree = "<group>"; };
-		FCB8295520FBDE5D00ED8484 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		FCB8295520FBDE5D00ED8484 /* SessionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionUtils.swift; sourceTree = "<group>"; };
 		FCB8295820FBDF1A00ED8484 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FCB8295D20FBE55300ED8484 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		FCCCC6252270DDF20054661A /* AuthManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManagerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,16 +94,60 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC245259225E6EE1000CDD21 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				FC24525A225E6EEA000CDD21 /* Colors.swift */,
+				FC24525E225E97BC000CDD21 /* Button.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		FC245260225E9D3B000CDD21 /* dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				FC245261225E9D52000CDD21 /* DashboardViewController.swift */,
+			);
+			path = dashboard;
+			sourceTree = "<group>";
+		};
+		FC44D3C92272452D00741AE0 /* managers */ = {
+			isa = PBXGroup;
+			children = (
+				FC24525C225E7091000CDD21 /* AppAuthManager.swift */,
+				FC245263225F7915000CDD21 /* AppSessionManager.swift */,
+			);
+			path = managers;
+			sourceTree = "<group>";
+		};
 		FC545E5320EBF678005EB0FC /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				FCB8295520FBDE5D00ED8484 /* Utils.swift */,
-				FC70DB5120EC28A000AEEA80 /* Session.swift */,
-				FC4E3FD020EE958400B8F91D /* SessionManager.swift */,
-				FC70DB4F20EC246400AEEA80 /* SessionDataStore.swift */,
-				FCB8295320FBDBB600ED8484 /* KeyedArchiverManager.swift */,
+				FCA86551227289DD0001125B /* Keychain */,
+				FC5E5B6F225BE69E008A7C7C /* Auth */,
+				FC5E5B6E225BE5A0008A7C7C /* Session */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		FC5E5B6E225BE5A0008A7C7C /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				FCB8295520FBDE5D00ED8484 /* SessionUtils.swift */,
+				FC4E3FD020EE958400B8F91D /* SessionManager.swift */,
+				FC70DB4F20EC246400AEEA80 /* SessionDataStore.swift */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		FC5E5B6F225BE69E008A7C7C /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				FC245255225E2B3D000CDD21 /* AuthUtils.swift */,
+				FC5E5B78225D4AEF008A7C7C /* AuthManager.swift */,
+				FC341A252254052B008FCB70 /* BiometryAuth.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		FC99C84C20EBECA9002F5D8E = {
@@ -106,11 +172,12 @@
 		FC99C85720EBECA9002F5D8E /* MSession */ = {
 			isa = PBXGroup;
 			children = (
-				FCB2051820FBE73B009EB2BC /* utils */,
+				FC245259225E6EE1000CDD21 /* utils */,
 				FCB8295720FBDF1100ED8484 /* model */,
+				FC44D3C92272452D00741AE0 /* managers */,
 				FCB8295C20FBE52300ED8484 /* base */,
-				FCB8295B20FBE50900ED8484 /* container */,
-				FCB8295A20FBE44B00ED8484 /* apps */,
+				FCB8295B20FBE50900ED8484 /* login */,
+				FC245260225E9D3B000CDD21 /* dashboard */,
 				FC99C85820EBECA9002F5D8E /* AppDelegate.swift */,
 				FC99C85F20EBECAA002F5D8E /* Assets.xcassets */,
 				FC99C86120EBECAA002F5D8E /* LaunchScreen.storyboard */,
@@ -122,18 +189,21 @@
 		FC99C86C20EBECAA002F5D8E /* MSessionTests */ = {
 			isa = PBXGroup;
 			children = (
-				FC99C86D20EBECAA002F5D8E /* MSessionTests.swift */,
+				FCCCC6252270DDF20054661A /* AuthManagerTests.swift */,
+				FC71DCE82266B68E00C87A6A /* SessionManagerTests.swift */,
+				FC4D68672273AD0E0099FF17 /* AuthAndSessionTests.swift */,
 				FC99C86F20EBECAA002F5D8E /* Info.plist */,
 			);
 			path = MSessionTests;
 			sourceTree = "<group>";
 		};
-		FCB2051820FBE73B009EB2BC /* utils */ = {
+		FCA86551227289DD0001125B /* Keychain */ = {
 			isa = PBXGroup;
 			children = (
-				FCB2051920FBE74C009EB2BC /* Colors.swift */,
+				FCA86552227344E30001125B /* Keychain.swift */,
+				FC5E5B72225BE7A4008A7C7C /* KeychainItem.swift */,
 			);
-			path = utils;
+			path = Keychain;
 			sourceTree = "<group>";
 		};
 		FCB8295720FBDF1100ED8484 /* model */ = {
@@ -144,19 +214,14 @@
 			path = model;
 			sourceTree = "<group>";
 		};
-		FCB8295A20FBE44B00ED8484 /* apps */ = {
+		FCB8295B20FBE50900ED8484 /* login */ = {
 			isa = PBXGroup;
 			children = (
+				FC245257225E3D57000CDD21 /* LoginViewModel.swift */,
+				FC5E5B74225C0DA1008A7C7C /* LoginViewController.swift */,
+				FC5E5B75225C0DA1008A7C7C /* LoginViewController.xib */,
 			);
-			path = apps;
-			sourceTree = "<group>";
-		};
-		FCB8295B20FBE50900ED8484 /* container */ = {
-			isa = PBXGroup;
-			children = (
-				FC99C85A20EBECA9002F5D8E /* ViewController.swift */,
-			);
-			path = container;
+			path = login;
 			sourceTree = "<group>";
 		};
 		FCB8295C20FBE52300ED8484 /* base */ = {
@@ -250,6 +315,7 @@
 			files = (
 				FC99C86320EBECAA002F5D8E /* LaunchScreen.storyboard in Resources */,
 				FC99C86020EBECAA002F5D8E /* Assets.xcassets in Resources */,
+				FC5E5B77225C0DA1008A7C7C /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,16 +333,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC70DB5220EC28A000AEEA80 /* Session.swift in Sources */,
-				FCB2051A20FBE74C009EB2BC /* Colors.swift in Sources */,
-				FC99C85B20EBECA9002F5D8E /* ViewController.swift in Sources */,
+				FC245262225E9D52000CDD21 /* DashboardViewController.swift in Sources */,
+				FC24525D225E7091000CDD21 /* AppAuthManager.swift in Sources */,
+				FC5E5B79225D4AEF008A7C7C /* AuthManager.swift in Sources */,
+				FC5E5B76225C0DA1008A7C7C /* LoginViewController.swift in Sources */,
+				FC245256225E2B3D000CDD21 /* AuthUtils.swift in Sources */,
+				FC5E5B73225BE7A4008A7C7C /* KeychainItem.swift in Sources */,
 				FC99C85920EBECA9002F5D8E /* AppDelegate.swift in Sources */,
-				FCB8295620FBDE5D00ED8484 /* Utils.swift in Sources */,
+				FC24525F225E97BC000CDD21 /* Button.swift in Sources */,
+				FCB8295620FBDE5D00ED8484 /* SessionUtils.swift in Sources */,
 				FCB8295920FBDF1A00ED8484 /* User.swift in Sources */,
+				FC245258225E3D57000CDD21 /* LoginViewModel.swift in Sources */,
+				FCA86553227344E30001125B /* Keychain.swift in Sources */,
+				FC24525B225E6EEA000CDD21 /* Colors.swift in Sources */,
+				FC341A262254052B008FCB70 /* BiometryAuth.swift in Sources */,
 				FCB8295E20FBE55300ED8484 /* BaseViewController.swift in Sources */,
 				FCB2051C20FBE8DA009EB2BC /* BaseNavigationController.swift in Sources */,
 				FC4E3FD120EE958400B8F91D /* SessionManager.swift in Sources */,
-				FCB8295420FBDBB600ED8484 /* KeyedArchiverManager.swift in Sources */,
+				FC245264225F7915000CDD21 /* AppSessionManager.swift in Sources */,
 				FC70DB5020EC246400AEEA80 /* SessionDataStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,7 +359,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC99C86E20EBECAA002F5D8E /* MSessionTests.swift in Sources */,
+				FC71DCE92266B68E00C87A6A /* SessionManagerTests.swift in Sources */,
+				FCCCC6262270DDF20054661A /* AuthManagerTests.swift in Sources */,
+				FC4D68682273AD0E0099FF17 /* AuthAndSessionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,13 +508,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KXWH4SC5H2;
 				INFOPLIST_FILE = MSession/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.vitormesquita.MSession;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -450,13 +527,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KXWH4SC5H2;
 				INFOPLIST_FILE = MSession/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.vitormesquita.MSession;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -467,6 +545,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KXWH4SC5H2;
 				INFOPLIST_FILE = MSessionTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -475,7 +554,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.vitormesquita.MSessionTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MSession.app/MSession";
 			};
@@ -487,6 +566,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KXWH4SC5H2;
 				INFOPLIST_FILE = MSessionTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -495,7 +575,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.vitormesquita.MSessionTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MSession.app/MSession";
 			};
