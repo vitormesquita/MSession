@@ -16,12 +16,18 @@ struct Keychain {
       case unhandledError(status: OSStatus)
    }
    
+   private let prefix: String
    private let service: String
    private let accessGroup: String?
    
-   init(service: String, accessGroup: String? = nil) {
+   init(service: String, accessGroup: String? = nil, prefix: String = "") {
+      self.prefix = prefix
       self.service = service
       self.accessGroup = accessGroup
+   }
+   
+   private var serviceName: String {
+      return prefix + service
    }
    
    func getItemBy(account: String) -> KeychainItem? {
@@ -33,11 +39,11 @@ struct Keychain {
       let items = try? self.items()
       let firstItem = items?.first(where: { $0.account == account })
       
-      return firstItem ?? KeychainItem(service: service, account: account)
+      return firstItem ?? KeychainItem(service: serviceName, account: account)
    }
    
    func items() throws -> [KeychainItem] {
-      var query = Keychain.query(withService: service, accessGroup: accessGroup)
+      var query = Keychain.query(withService: serviceName, accessGroup: accessGroup)
       query[kSecReturnData as String] = kCFBooleanFalse
       query[kSecMatchLimit as String] = kSecMatchLimitAll
       query[kSecReturnAttributes as String] = kCFBooleanTrue
@@ -59,7 +65,7 @@ struct Keychain {
             continue
          }
          
-         let passwordItem = KeychainItem(service: service, account: account, accessGroup: accessGroup)
+         let passwordItem = KeychainItem(service: serviceName, account: account, accessGroup: accessGroup)
          passwordItems.append(passwordItem)
       }
       

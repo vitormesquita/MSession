@@ -15,6 +15,7 @@
 		FC245262225E9D52000CDD21 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC245261225E9D52000CDD21 /* DashboardViewController.swift */; };
 		FC245264225F7915000CDD21 /* AppSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC245263225F7915000CDD21 /* AppSessionManager.swift */; };
 		FC341A262254052B008FCB70 /* BiometryAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC341A252254052B008FCB70 /* BiometryAuth.swift */; };
+		FC4D68682273AD0E0099FF17 /* AuthAndSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4D68672273AD0E0099FF17 /* AuthAndSessionTests.swift */; };
 		FC4E3FD120EE958400B8F91D /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4E3FD020EE958400B8F91D /* SessionManager.swift */; };
 		FC5E5B73225BE7A4008A7C7C /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5E5B72225BE7A4008A7C7C /* KeychainItem.swift */; };
 		FC5E5B76225C0DA1008A7C7C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5E5B74225C0DA1008A7C7C /* LoginViewController.swift */; };
@@ -52,6 +53,7 @@
 		FC245261225E9D52000CDD21 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		FC245263225F7915000CDD21 /* AppSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSessionManager.swift; sourceTree = "<group>"; };
 		FC341A252254052B008FCB70 /* BiometryAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometryAuth.swift; sourceTree = "<group>"; };
+		FC4D68672273AD0E0099FF17 /* AuthAndSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAndSessionTests.swift; sourceTree = "<group>"; };
 		FC4E3FD020EE958400B8F91D /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		FC5E5B72225BE7A4008A7C7C /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		FC5E5B74225C0DA1008A7C7C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 			children = (
 				FCCCC6252270DDF20054661A /* AuthManagerTests.swift */,
 				FC71DCE82266B68E00C87A6A /* SessionManagerTests.swift */,
+				FC4D68672273AD0E0099FF17 /* AuthAndSessionTests.swift */,
 				FC99C86F20EBECAA002F5D8E /* Info.plist */,
 			);
 			path = MSessionTests;
@@ -358,6 +361,7 @@
 			files = (
 				FC71DCE92266B68E00C87A6A /* SessionManagerTests.swift in Sources */,
 				FCCCC6262270DDF20054661A /* AuthManagerTests.swift in Sources */,
+				FC4D68682273AD0E0099FF17 /* AuthAndSessionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,7 +19,7 @@ open class AuthManager: NSObject {
    
    public init(service: String, accessGroup: String? = nil) {
       self.biometryAuth = BiometryAuth()
-      self.keychain = Keychain(service: service, accessGroup: accessGroup)
+      self.keychain = Keychain(service: service, accessGroup: accessGroup, prefix: "mauth")
       super.init()
    }
    
