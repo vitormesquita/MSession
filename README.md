@@ -2,9 +2,9 @@
 
 ## MSession is a session and authentication solution written in Swift
 
-### It is a simple and easy solution to build a security and modular app with latest apple biometry authentication.
+### It is a simple and easy solution to build a security and modular app with the latest apple biometric authentication.
 
-MSessions uses `Keychain` to authenticate users and save session (Secret Key, User). It's really flexible, easy and scalable use into your app.
+MSessions uses `Keychain` to authenticate users and save sessions (Secret Key, User). It's really flexible, easy and scalable use in your app.
 
 ## Requirements
 
@@ -18,8 +18,7 @@ MSessions uses `Keychain` to authenticate users and save session (Secret Key, Us
 
 ## Installation
 
-You can use each solution (Session/Auth) separately but by default these solutions are together.
-
+You can use each solution (Session/Auth) separately but by default, these solutions are together.
 
 ### Cocoapods
 
@@ -27,13 +26,13 @@ You can use each solution (Session/Auth) separately but by default these solutio
 pod 'MSession'
 ```
 
-The subspec if you want use App session solution
+The subspec if you want to use App session solution
 
 ```ruby
 pod 'MSession/Session'
 ```
 
-The subspec if you want use App authentication solution 
+The subspec if you want to use App authentication solution
 
 ```ruby
 pod 'Mession/Auth'
@@ -41,7 +40,7 @@ pod 'Mession/Auth'
 
 ### Manually
 
-If you don't use any dependency managers, you can integrate MSession in your project manually just adding the files which contains: 
+If you don't use any dependency managers, you can integrate MSession in your project manually just adding the files which contain:
 
 - [MSession Classes](https://github.com/vitormesquita/MSession/tree/master/Source). 
 - [Session Classes](https://github.com/vitormesquita/MSession/tree/master/Source/Session).
@@ -51,9 +50,9 @@ If you don't use any dependency managers, you can integrate MSession in your pro
 
 Session module contains all classes to manage an app session. 
 
-All this module runs around the `SessionManager<T: AnyObject>` class. This class is in charge to deal with ***create, update, expire and logout*** app session. By default SessionManager needs a `AnyObject` to save on session. This object will be your "user" or "client" into application.
+All this module runs around the `SessionManager<T: AnyObject>` class. This class is in charge to deal with ***create, update, expire and logout*** app session. By default, SessionManager needs an `AnyObject` to save on session. This object will be your "user" or "client" into the application.
 
-So basically to use this module you need to have a instance of this class or create your own extending `SessionManager`.
+So basically to use this module you need to have an instance of this class or create your own.
 
 **Create a shared instante:**
 
@@ -61,8 +60,7 @@ So basically to use this module you need to have a instance of this class or cre
 static let shared = SessionManager<User>(service: "MyAppService")
 ```
 
-
-If you want improve more things inside your session, like put a expire time or others stuffs is more appropriate create your own class and implemente the methods.
+If you want to improve more things in your app session, like put an expire time or something else is more appropriate to create your own class.
 
 **Create your own class:**
 
@@ -79,17 +77,17 @@ class AppSessionManager: SessionManager<User> {
 
 *Create your own class is the most appropriate*
 
-To create a `SessionManager` instance you will need to provide a `service`, it is a identifier to save and restore your app session
+To create a `SessionManager` instance you will need to provide a `service`, it is an identifier to save and restore your app session
 
-`SessionManager` by default has a `DataStore` implementation called `SessionDataStore`, this implementation is using `NSKeyedArchiver` and `Keychain` to save session. 
+`SessionManager` by default has a `DataStore` implementation called `SessionDataStore`, this implementation is using `NSKeyedArchiver` and `Keychain` to save the session.
 
-If you want create a local store with realm or core data you can use MSession as well. You just need to create your own DataStore and implement `SessionDataStore` protocol.
+If you want to create a local store with realm or core data you can use MSession as well. You just need to create your own DataStore and implement `SessionDataStoreProtocol`.
 
 ```swift
 import MSession
 
 class AppSessionDataStore: SessionDataStoreProtocol {
-   // implemet all methods
+   // implement all methods
 }
 ```
 
@@ -106,13 +104,13 @@ class AppSessionManager: SessionManager<User> {
 }
 ```
 
-**OBS: If you are using default DataStore (SessionDataStore) you MUST do your `User` extends `NSObject & NSCoding`**
+**OBS: If you are using default DataStore (SessionDataStore) your `User` MUST extends `NSObject & NSCoding`**
 
 ## Auth
 
-Auth module contains all classes to manage authentication using `Biometry (FaceID)` and `Keychain` security.All this module runs around the `AuthManager` class. This class contains all methods you will need to ensure a secury authentication in your app. 
+Auth module contains all classes to manage authentication using `Biometry (FaceID)` and `Keychain`. `AuthManager` class contains all methods which you will need to ensure a secure authentication in your app.
 
-As Session module you need to have a instance of `AuthManager` class or create your own.
+As the Session module, you need to have an instance of `AuthManager` class or create your own.
 
 **Create a shared instance:**
 
@@ -133,17 +131,17 @@ class AppAuthManager: AuthManager {
 }
 ```
 
-To create a `AuthManager` instance you will need to provide a `service` and optionally a `occupationGroup`
+To create an `AuthManager` instance you will need to provide a `service` and optionally a `occupationGroup`
 
 - `service`: Identifier to save and restore saved accounts and passwords.
-- `occupationGroup`: An access group will create items accross apps.
+- `occupationGroup`: An access group will create items across apps.
 	
 Not specifying an `occupationGroup`(access group) will create items specific to each app.
 
-On AuthManager you can separete in two sections:
+`AuthManager` can be separated into two sections:
 
 - Save accounts and passwords (Keychain)
-- Use biometry authentication (Face/Touch ID)
+- Use biometric authentication (Face/Touch ID)
 
 ### Save accounts and passwords 
 
@@ -158,9 +156,9 @@ open func saveAccount(account: String, password: String, deleteOthers: Bool = fa
 
 `MAccount` is a typealias to a tuple that return `account: String` and `password: String`
 
-### Biometry authentication
+### Biometric authentication
 
-AuthManager provides some functions to interact with Biometry authentication using `LAContext`. These functions are:
+AuthManager provides some functions to interact with biometric authentication using `LAContext`. These functions are:
 
 ```swift
 public var biometryType: BiometryType
@@ -170,11 +168,11 @@ open func biometryIsAvailable() -> Bool
 open func biometryAuthentication(reason: String, completion: @escaping ((BiometryError?) -> Void))
 ```
 
-`LAContext` is just available to iOS 11 or later, but you don't need to check any function to called. MSession handle it to you, but of course some functions will return an error if you try use it on iOS 10.
+`LAContext` is just available to iOS 11 or later, but you don't need to check any function to call. MSession handles it to you, but of course, some functions will return an error if you try to use it on iOS 10.
 
 ## Contributing
 	
-If you think that we can do the MSession more powerful please contribute with this project. And let's improve it to help other developers.
+If you think that we can do the MSession more powerful please contribute to this project. And let's improve it to help other developers.
 
 Create a pull request or let's talk about something in issues. Thanks a lot.
 
