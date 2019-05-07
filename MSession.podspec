@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'MSession'
-  s.version          = '1.0'
+  s.version          = '1.0.1'
   s.summary          = 'A simple way to manager session in your application'
   s.homepage         = 'https://github.com/vitormesquita/MSession'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -9,19 +9,17 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '10.0'
 
-  s.default_subspecs = "Core", "Session", "Auth"
+  s.default_subspec = "Core"
 
   s.subspec "Core" do |ss|
-    ss.source_files = "Source/Keychain/*"
+    ss.source_files = "Source/**/*"
   end
 
   s.subspec "Session" do |ss|
-    ss.dependency "MSession/Core"
-    ss.source_files = "Source/Session/*"
+    ss.source_files = "Source/Keychain/*", "Source/Session/*"
   end
 
   s.subspec "Auth" do |ss|
-    ss.dependency "MSession/Core"
-    ss.source_files = "Source/Auth/*"
+    ss.source_files = "Source/Keychain/*", "Source/Auth/*"
   end
 end
